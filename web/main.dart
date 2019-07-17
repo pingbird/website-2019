@@ -20,7 +20,7 @@ void main() {
   var linksTitle = querySelector("#links-title");
   var linksContent = querySelector("#links-content");
 
-  void poly(Element parent, List<num> points, {String style, String transform}) {
+  void poly(Element parent, List<num> points, {String style, String transform, String opacity}) {
     var p = PolygonElement();
     var pts = StringBuffer();
     for (int i = 0; i < points.length; i += 2) {
@@ -32,6 +32,7 @@ void main() {
     p.attributes["points"] = pts.toString();
     if (style != null) p.attributes["style"] = style;
     if (transform != null) p.attributes["transform"] = transform;
+    if (opacity != null) p.attributes["opacity"] = opacity;
     parent.children.add(p);
   }
 
@@ -86,6 +87,76 @@ void main() {
         8, h,
         0, h - 8,
       ], style: "fill:#2b94e5", transform: "translate(${tstText.offsetLeft},${tstText.offsetTop})");
+    }
+
+    var btns = querySelectorAll("#tst-btn-row .tst-btn");
+    const st = 8 / 6;
+
+    {
+      List<num> head(int ox, int oy) => [
+        18 * st + ox, oy + 3 * st,
+        16 * st + ox, oy + st,
+        16 * st + ox, oy,
+        26 * st + ox, oy,
+        26 * st + ox, oy + st,
+        24 * st + ox, oy + 3 * st,
+      ];
+
+      var w = header.clientWidth;
+      var h = header.clientHeight;
+
+      var os = btns[0].offsetTo(header);
+      poly(e, [
+        ...head(os.x, os.y + 56),
+        24 * st + os.x, h + 8 * -5 + st * -2,
+        26 * st + os.x, h + 8 * -5,
+        os.x + st * 24 + 8 * 18, h - 8 * 5,
+        os.x + st * 24 + 8 * 18, h - 8,
+        os.x + st * 18 + 8 * 18, h - 8,
+        os.x + st * 18 + 8 * 18, h - 8 * 4,
+        22 * st + os.x, h + 8 * -4,
+        18 * st + os.x, h + 8 * -4 + st * -4,
+      ], style: "fill:#fff", opacity: "0.27");
+
+      os = btns[1].offsetTo(header);
+      poly(e, [
+        ...head(os.x, os.y + 56),
+        24 * st + os.x, h - 8 * 7,
+        os.x + st * 24 + 8 * 9, h - 8 * 7,
+        os.x + st * 24 + 8 * 9, h - 8,
+        os.x + st * 18 + 8 * 9, h - 8,
+        os.x + st * 18 + 8 * 9, h - 8 * 6,
+        18 * st + os.x,h - 8 * 6,
+      ], style: "fill:#fff", opacity: "0.27");
+
+      os = btns[2].offsetTo(header);
+      poly(e, [
+        ...head(os.x, os.y + 56),
+        os.x + st * 24, h - 8,
+        os.x + st * 18, h - 8,
+      ], style: "fill:#fff", opacity: "0.27");
+
+      os = btns[3].offsetTo(header);
+      poly(e, [
+        ...head(os.x, os.y + 56),
+        24 * st + os.x, h - 8 * 6,
+        os.x + st * 24 - 8 * 9, h - 8 * 6,
+        os.x + st * 24 - 8 * 9, h - 8,
+        os.x + st * 18 - 8 * 9, h - 8,
+        os.x + st * 18 - 8 * 9, h - 8 * 7,
+        18 * st + os.x,h - 8 * 7,
+      ], style: "fill:#fff", opacity: "0.27");
+
+      os = btns[4].offsetTo(header);
+      poly(e, [
+        ...head(os.x, os.y + 56),
+        24 * st + os.x, h - 8 * 4,
+        os.x + st * 24 - 8 * 18, h - 8 * 4,
+        os.x + st * 24 - 8 * 18, h - 8,
+        os.x + st * 18 - 8 * 18, h - 8,
+        os.x + st * 18 - 8 * 18, h - 8 * 5,
+        18 * st + os.x,h - 8 * 5,
+      ], style: "fill:#fff", opacity: "0.27");
     }
 
     headerBg.children = [e];
