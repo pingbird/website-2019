@@ -1,5 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto);
 @import url('https://fonts.googleapis.com/css?family=Share+Tech+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Nunito&display=swap');
 
 html, body {
   margin: 0;
@@ -24,13 +25,11 @@ body {
   flex: 1 1 auto;
   max-width: 1170px;
   min-height: 100%;
-  outline: 1px solid #000000;
   margin-top: 128px;
 }
 
 #header {
   width: 100%;
-  outline: 1px solid #0000FF;
   height: 448px;
   position: relative;
   display: flex;
@@ -44,14 +43,12 @@ body {
   margin-top: 44px;
   height: 224px;
   line-height: 224px;
-  outline: 1px solid #5070FF;
   margin-left: 16px;
   margin-right: 16px;
   text-align: center;
 }
 
 #tst-btn-row {
-  outline: 1px solid #005050;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -71,55 +68,68 @@ body {
 #about-row {
   display: flex;
   flex-direction: row;
-  margin-top: -24px;
+  margin-top: -32px;
 }
 
 #about {
-  outline: 1px solid #690040;
   width: 768px;
   height: 504px;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 #links {
   height: 504px;
   margin-left: 16px;
-  outline: 1px solid #495020;
   flex: 1;
   display: flex;
   flex-direction: column;
+  position: relative;
+  min-width: 288px;
 }
 
 #about-title {
-  outline: 1px solid #7980F0;
   height: 56px;
   margin-top: 8px;
   margin-left: 8px;
   margin-right: 8px;
-  width: 232px;
+  width: 240px;
+
+  line-height: 56px;
+  vertical-align: middle;
+  text-align: center;
+
+  color: #EFEFEF;
+  font-family: 'Nunito', sans-serif;
+  font-size: 25px;
 }
 
 #about-content {
   flex: 1;
-  outline: 1px solid #7980F0;
   margin: 8px 8px 24px;
 }
 
 #links-content {
   flex: 1;
-  outline: 1px solid #7980F0;
   margin: 8px 8px 24px;
 }
 
 #links-title {
-  outline: 1px solid #7980F0;
   height: 56px;
   margin-top: 8px;
   margin-left: 8px;
   margin-right: 8px;
   width: 232px;
   align-self: flex-end;
+
+  line-height: 56px;
+  vertical-align: middle;
+  text-align: center;
+
+  color: #EFEFEF;
+  font-family: 'Nunito', sans-serif;
+  font-size: 25px;
 }
 
 .bg-svg {
