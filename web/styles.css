@@ -26,6 +26,7 @@ body {
   max-width: 1170px;
   min-height: 100%;
   margin-top: 128px;
+  font-family: 'Nunito', sans-serif;
 }
 
 #header {
@@ -112,6 +113,11 @@ body {
 #about-content {
   flex: 1;
   margin: 8px 8px 24px;
+  padding: 16px 16px 16px 16px;
+  color: #FFFFFF;
+  white-space: pre-wrap;
+  font-family: 'Nunito', sans-serif;
+  font-size: 18px;
 }
 
 #links-content {
