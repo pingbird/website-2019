@@ -39,6 +39,30 @@ void main() {
   void renderHeader() {
     print("hello");
     var e = SvgSvgElement();
+    
+    var defs = SvgElement.tag("defs");
+    
+    defs.children.add(
+      SvgElement.tag("linearGradient")
+        ..attributes["id"] = "blue"
+        ..attributes["x1"] = "0%"
+        ..attributes["x2"] = "0%"
+        ..attributes["x2"] = "100%"
+        ..attributes["y2"] = "100%"
+        ..children.addAll([
+          SvgElement.tag("stop")
+            ..attributes["offset"] = "0%"
+            ..style.setProperty("stop-color", "#2a70b3")
+            ..style.setProperty("stop-opacity", "1"),
+
+          SvgElement.tag("stop")
+            ..attributes["offset"] = "100%"
+            ..style.setProperty("stop-color", "#2d8dd7")
+            ..style.setProperty("stop-opacity", "1"),
+        ])
+    );
+    
+    e.children.add(defs);
 
     {
       var w = header.clientWidth;
@@ -86,7 +110,7 @@ void main() {
         w - 8, h,
         8, h,
         0, h - 8,
-      ], style: "fill:#2b94e5", transform: "translate(${tstText.offsetLeft},${tstText.offsetTop})");
+      ], style: "fill:url(#blue)", transform: "translate(${tstText.offsetLeft},${tstText.offsetTop})");
     }
 
     var btns = querySelectorAll("#tst-btn-row .tst-btn");
@@ -287,7 +311,10 @@ void main() {
   }
 
   void render() {
-    content.style.marginTop = "${min(128, max(0, ((body.clientWidth - 1170) / 2).floor()))}px";
+    var marg = "${max(8, min(128, max(0, ((body.clientWidth - 1170) / 2).floor())))}px";
+    content.style.marginTop = marg;
+    content.style.marginLeft = marg;
+    content.style.marginRight = marg;
 
     renderHeader();
     renderAbout();

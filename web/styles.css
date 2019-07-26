@@ -78,14 +78,14 @@ body {
 
 #about {
   width: 768px;
-  height: 504px;
+  height: 472px;
   display: flex;
   flex-direction: column;
   position: relative;
 }
 
 #links {
-  height: 504px;
+  height: 472px;
   margin-left: 16px;
   flex: 1;
   display: flex;
@@ -123,6 +123,11 @@ body {
 #links-content {
   flex: 1;
   margin: 8px 8px 24px;
+  padding-left: 32px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 #links-title {
@@ -154,4 +159,24 @@ body {
 .bg-svg > * {
   width: 100%;
   height: 100%;
+}
+
+#links-content .link-row {
+  font-family: 'Nunito', sans-serif;
+  font-size: 20px;
+  color: #EFEFEF;
+  flex-direction: row;
+  display: flex;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+#links-content .link-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 16px;
+}
+
+#links-content .link-separator {
+  margin-bottom: 32px;
 }
