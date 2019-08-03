@@ -57,13 +57,17 @@ body {
 }
 
 #tst-btn-row .tst-btn {
+  cursor: pointer;
   width: 56px;
   height: 56px;
+  transform: translate(0,0);
+  transition: all ease 0.5s;
+  background-size: cover;
 }
 
-#tst-btn-row .tst-btn img {
-  width: 56px;
-  height: 56px;
+#tst-btn-row .tst-btn:active {
+  transform: translate(0,-16px);
+  transition: all ease 0.5s;
 }
 
 #header #tst-btn-row .tst-btn:not(:first-child) {
@@ -123,11 +127,11 @@ body {
 #links-content {
   flex: 1;
   margin: 8px 8px 24px;
-  padding-left: 32px;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: stretch;
 }
 
 #links-title {
@@ -168,15 +172,41 @@ body {
   flex-direction: row;
   display: flex;
   align-items: center;
-  margin-bottom: 4px;
+  padding: 4px 4px 4px 32px;
+  transition: all ease 0.25s;
+  cursor: pointer;
+}
+
+#links-content .link-row:hover {
+  background-color: rgba(215, 215, 255, 0.1);
+  transition: all ease 0.25s;
+}
+
+#links-content .link-row:active {
+  background-color: rgba(215, 215, 255, 0.1);
+  transition: all ease 0.5s;
+  padding-left: 48px;
 }
 
 #links-content .link-icon {
   width: 24px;
   height: 24px;
   margin-right: 16px;
+  transition: all ease 0.2s;
+}
+
+#links-content .link-row:hover .link-icon {
+  margin-right: 16px;
+  transition: all ease 0.2s;
 }
 
 #links-content .link-separator {
   margin-bottom: 32px;
+}
+
+.disable-select {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
