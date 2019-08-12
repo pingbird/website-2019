@@ -73,6 +73,8 @@ void startBlog() async {
     var res = await _timeoutRequest("https://blog.tst.sh/rss/", timeout: 5.0);
     var doc = xml.parse(res);
 
+    // throw "Big gay";
+
     xml.XmlElement find(xml.XmlNode p, String name) {
       for (var c in p.children) {
         if (c is xml.XmlElement && c.name.toString() == name) return c;

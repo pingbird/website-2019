@@ -1,6 +1,5 @@
 import 'dart:html';
 import 'dart:math';
-
 import 'dart:svg';
 
 void startLayout() {
@@ -23,6 +22,8 @@ void startLayout() {
   var postsBg = querySelector("#recent-posts-bg");
   var postsTitle = querySelector("#recent-posts-title");
   var postsContent = querySelector("#recent-posts-content");
+
+  int shrink = 0;
 
   void poly(Element parent, List<num> points, {String style, String transform, String opacity}) {
     var p = PolygonElement();
@@ -68,7 +69,7 @@ void startLayout() {
 
     e.children.add(defs);
 
-    {
+    if (false) {
       var w = header.clientWidth;
       var h = header.clientHeight;
       poly(e, [
@@ -78,10 +79,12 @@ void startLayout() {
         w, 8,
         w, h - 6 * 8,
         w - 8, h - 5 * 8,
-        w - 31 * 8, h - 5 * 8,
-        w - 36 * 8, h,
-        36 * 8, h,
-        31 * 8, h - 5 * 8,
+        if (shrink < 1) ...[
+          w - 31 * 8, h - 5 * 8,
+          w - 36 * 8, h,
+          36 * 8, h,
+          31 * 8, h - 5 * 8,
+        ],
         8, h - 5 * 8,
         0, h - 6 * 8,
       ], style: "fill:#2b3d52");
@@ -93,16 +96,18 @@ void startLayout() {
         w, 8,
         w, h - 7 * 8,
         w - 8, h - 6 * 8,
-        w - 31 * 8, h - 6 * 8,
-        w - 36 * 8, h - 8,
-        36 * 8, h - 8,
-        31 * 8, h - 6 * 8,
+        if (shrink < 1) ...[
+          w - 31 * 8, h - 6 * 8,
+          w - 36 * 8, h - 8,
+          36 * 8, h - 8,
+          31 * 8, h - 6 * 8,
+        ],
         8, h - 6 * 8,
         0, h - 7 * 8,
       ], style: "fill:#3b536d");
     }
 
-    {
+    if (false) {
       var w = tstText.clientWidth;
       var h = tstText.clientHeight;
       poly(e, [
@@ -132,6 +137,7 @@ void startLayout() {
 
       var w = header.clientWidth;
       var h = header.clientHeight;
+
 
       var os = btns[0].offsetTo(header);
       poly(e, [
@@ -386,6 +392,27 @@ void startLayout() {
   }
 
   void render() {
+    shrink = 0;
+    if (body.clientWidth < 1098) shrink++;
+
+    aboutRow.style.flexDirection = shrink > 0 ? "column" : "row";
+    aboutRow.style.marginTop = shrink > 0 ? "16px" : "";
+
+    links.style.marginLeft = shrink > 0 ? "0" : "";
+    links.style.marginTop = shrink > 0 ? "16px" : "";
+    links.style.width = shrink > 0 ? "100%" : "";
+    links.style.maxWidth = shrink > 0 ? "none" : "";
+
+    linksContent.style.flexDirection = shrink > 0 ? "row" : "";
+
+    if (shrink > 0) {
+      linksContent.classes.add("shrink");
+    } else {
+      linksContent.classes.remove("shrink");
+    }
+
+    //links.style.flex = shrink > 0 ? "16px" : "0";
+
     var marg = "${max(8, min(128, max(0, ((body.clientWidth - 1170) / 2).floor())))}px";
     content.style.marginTop = marg;
     content.style.marginLeft = marg;
@@ -397,7 +424,8 @@ void startLayout() {
     renderPosts();
   }
 
-  ResizeObserver((entries, observer) {
+  window.onResize.listen((e) {
     render();
-  }).observe(querySelector("body"));
+  });
+  render();
 }
