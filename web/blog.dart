@@ -97,7 +97,10 @@ void startBlog() async {
     var postBgs = <DivElement>[];
     var postElms = <DivElement>[];
     String transTo;
+    String transTitle;
     Timer transTimer;
+    Timer resetTimer;
+    DateTime resetLast;
 
     var bgMainDiv = querySelector("#blog-posts-bg-main") as DivElement;
     var bgMain = (querySelector("#blog-posts-bg-main").querySelector(".blog-posts-bg-inner") as DivElement);
@@ -127,15 +130,36 @@ void startBlog() async {
       c.onMouseEnter.listen((e) {
         print("enter");
 
+        if (resetTimer != null && DateTime.now().difference(resetLast).inMilliseconds > 50) {
+          bgBack.style.backgroundImage = "none";
+          print("reset");
+        }
+
         if (transTo != null) {
           transTimer.cancel();
-          bgBack.style.backgroundImage = 'url("$transTo")';
+          bgMainDiv.style.opacity = "0";
+          bgBack.style.backgroundImage = "url($transTo)";
+        }
+
+        resetTimer?.cancel();
+        resetTimer = null;
+
+
+        print(">>>> (${bgBack.style.backgroundImage})");
+
+        if (true) {
+          bgMainDiv.style.transition = "default";
+          bgMainDiv.classes.remove("blog-posts-bg");
+          if (bgMainDiv.offsetWidth != bgMainDiv.offsetWidth) print("mmm, yes");
+          bgMainDiv.classes.add("blog-posts-bg");
+          bgMainDiv.style.transition = "all 0.5s ease";
         }
 
         bgMain.style.backgroundImage = 'url("$banner")';
         bgMainDiv.style.opacity = "1";
-        bgMainDiv.style.transition = "transition: all 0.5s ease;";
         transTo = banner;
+        transTitle = title;
+        print("whee $transTitle ${bgMainDiv.getComputedStyle().opacity}");
         transTimer = Timer(Duration(milliseconds: 500), () {
           bgMainDiv.style.opacity = "0";
           bgBack.style.backgroundImage = "url($transTo)";
@@ -147,7 +171,18 @@ void startBlog() async {
       });
 
       c.onMouseLeave.listen((e) {
-        print("leave");
+        resetTimer = Timer(Duration(milliseconds: 50), () {
+          transTimer?.cancel();
+          transTo = null;
+          resetTimer = Timer(Duration(milliseconds: 450), () {
+            bgMainDiv.style.transition = "default";
+            bgMainDiv.style.opacity = "default";
+            bgMain.style.backgroundImage = "none";
+            bgBack.style.backgroundImage = "none";
+            resetTimer = null;
+          });
+        });
+        resetLast = DateTime.now();
         for (var p in postElms) p.style.opacity = "1";
         for (var p in postBgs) p.style.opacity = "1";
       });
