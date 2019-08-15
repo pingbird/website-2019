@@ -403,6 +403,8 @@ void startLayout() {
     links.style.width = shrink > 0 ? "100%" : "";
     links.style.maxWidth = shrink > 0 ? "none" : "";
 
+    tstText.style.fontSize = shrink > 0 ? "48px" : "";
+
     linksContent.style.flexDirection = shrink > 0 ? "row" : "";
 
     if (shrink > 0) {
@@ -415,8 +417,7 @@ void startLayout() {
 
     var marg = "${max(8, min(128, max(0, ((body.clientWidth - 1170) / 2).floor())))}px";
     content.style.marginTop = marg;
-    content.style.marginLeft = marg;
-    content.style.marginRight = marg;
+    content.style.marginBottom = marg;
 
     renderHeader();
     renderAbout();
