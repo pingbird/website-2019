@@ -22,6 +22,10 @@ void startLayout() {
   var postsBg = querySelector("#recent-posts-bg");
   var postsTitle = querySelector("#recent-posts-title");
   var postsContent = querySelector("#recent-posts-content");
+  var projects = querySelector("#projects");
+  var projectsBg = querySelector("#projects-bg");
+  var projectsContent = querySelector("#projects-content");
+
 
   int shrink = 0;
 
@@ -69,7 +73,9 @@ void startLayout() {
 
     e.children.add(defs);
 
-    if (false) {
+    const showTitleBg = false;
+
+    if (showTitleBg) {
       var w = header.clientWidth;
       var h = header.clientHeight;
       poly(e, [
@@ -107,7 +113,7 @@ void startLayout() {
       ], style: "fill:#3b536d");
     }
 
-    if (false) {
+    if (showTitleBg) {
       var w = tstText.clientWidth;
       var h = tstText.clientHeight;
       poly(e, [
@@ -391,6 +397,71 @@ void startLayout() {
     postsContent.style.clipPath = path;
   }
 
+  void renderProjects() {
+    var e = SvgSvgElement();
+
+    {
+      var w = projects.clientWidth;
+      var h = projects.clientHeight;
+      poly(e, [
+        0, 8,
+        8, 0,
+        15 * 8, 0,
+        20 * 8, 8 * 5,
+        w - 8, 8 * 5,
+        w, 8 * 6,
+        w, h - 8,
+        w - 8, h,
+        w - 15 * 8, h,
+        w - 20 * 8, h - 8 * 5,
+        20 * 8, h - 8 * 5,
+        15 * 8, h,
+        8, h,
+        0, h - 8,
+      ], style: "fill:#2b3d52");
+    }
+
+    {
+      var w = projects.clientWidth;
+      var h = projects.clientHeight;
+      poly(e, [
+        0, 8,
+        8, 0,
+        15 * 8, 0,
+        20 * 8, 8 * 5,
+        w - 20 * 8, 8 * 5,
+        w - 15 * 8, 0,
+        w - 8, 0,
+        w, 8,
+        w, h - 16,
+        w - 8, h - 8,
+        w - 15 * 8, h - 8,
+        w - 20 * 8, h - 8 * 6,
+        20 * 8, h - 8 * 6,
+        15 * 8, h - 8,
+        8, h - 8,
+        0, h - 16,
+      ], style: "fill:#3b536d");
+    }
+
+    {
+      var w = projectsContent.clientWidth;
+      var h = projectsContent.clientHeight;
+      poly(e, [
+        0, 8,
+        8, 0,
+        w - 8, 0,
+        w, 8,
+        w, h - 8,
+        w - 8, h,
+        8, h,
+        0, h - 8,
+      ], style: "fill:#303d4f", transform: "translate(${projectsContent.offsetLeft},${projectsContent.offsetTop})");
+    }
+
+    projectsBg.children = [e];
+  }
+
   void render() {
     shrink = 0;
     if (body.clientWidth < 1098) shrink++;
@@ -423,6 +494,7 @@ void startLayout() {
     renderAbout();
     renderLinks();
     renderPosts();
+    renderProjects();
   }
 
   window.onResize.listen((e) {

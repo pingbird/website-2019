@@ -12,7 +12,7 @@ html, body {
 }
 
 body {
-  background: url("bg.png") center;
+  background: #202020;
   background-size: cover;
   min-width: 518px;
 }
@@ -96,6 +96,14 @@ body {
   margin-top: 16px;
 }
 
+#projects {
+  margin-top: 16px;
+  height: 768px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
 #links {
   margin-left: 16px;
   flex: 1 1 auto;
@@ -133,20 +141,20 @@ body {
 }
 
 #recent-posts-title {
-   height: 56px;
-   margin-top: 8px;
-   margin-left: 8px;
-   margin-right: 8px;
-   width: 240px;
+  height: 56px;
+  margin-top: 8px;
+  margin-left: 8px;
+  margin-right: 8px;
+  width: 240px;
 
-   line-height: 56px;
-   vertical-align: middle;
-   text-align: center;
+  line-height: 56px;
+  vertical-align: middle;
+  text-align: center;
 
-   color: #EFEFEF;
-   font-family: 'Nunito', sans-serif;
-   font-size: 25px;
- }
+  color: #EFEFEF;
+  font-family: 'Nunito', sans-serif;
+  font-size: 25px;
+}
 
 #recent-posts-content {
   position: relative;
@@ -164,6 +172,32 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+#projects-title {
+  margin: 48px auto 0 auto;
+  vertical-align: middle;
+  text-align: center;
+
+  color: #EFEFEF;
+  font-family: 'Nunito', sans-serif;
+  font-size: 25px;
+}
+
+#projects-content {
+  position: relative;
+
+  flex: 1;
+  margin: 8px 8px 72px 8px;
+  color: #FFFFFF;
+  white-space: pre-wrap;
+  font-family: 'Nunito', sans-serif;
+  font-size: 18px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 #links-content {
@@ -324,12 +358,12 @@ body {
 
 #blog-posts-bg-main .blog-posts-bg-inner {
   filter: blur(4px);
-  opacity: 0.7;
+  opacity: 0.6;
 }
 
 #blog-posts-bg-back .blog-posts-bg-inner {
   filter: blur(4px);
-  opacity: 0.7;
+  opacity: 0.6;
 }
 
 #blog-posts-bg-main {
@@ -337,24 +371,20 @@ body {
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-  margin-top: 4px;
-  margin-bottom: 4px;
+  width: 6px;
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #2f3136;
-  border-radius: 5px;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
   transition: all 0.2s ease;
-  background: #5a5f69;
-  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #6d7380;
+  background: rgba(255, 255, 255, 0.7);
 }
