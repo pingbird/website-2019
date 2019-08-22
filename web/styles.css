@@ -12,12 +12,9 @@ html, body {
 }
 
 body {
-  background-color: #202225;
+  background: url("bg.png") center;
+  background-size: cover;
   min-width: 518px;
-}
-
-* {
-  outline: 1px solid #f00 !important;
 }
 
 #content-wrapper {
