@@ -250,7 +250,7 @@ void startLayout() {
         w - 8, h - 8,
         8, h - 8,
         0, h - 16,
-      ], style: "fill:#3b536d");
+      ], style: "fill:#3b536d;stroke:rgba(255,255,255,0.05);stroke-width:1;");
     }
 
     {
@@ -265,7 +265,7 @@ void startLayout() {
         w - 8, h,
         8, h,
         0, h - 8,
-      ], style: "fill:#303d4f", transform: "translate(${aboutContent.offsetLeft},${aboutContent.offsetTop})");
+      ], style: "fill:#303d4f;stroke:rgba(255,255,255,0.1);stroke-width:1;", transform: "translate(${aboutContent.offsetLeft},${aboutContent.offsetTop})");
     }
 
     aboutBg.children = [e];
@@ -305,7 +305,7 @@ void startLayout() {
         w - 8, h - 8,
         8, h - 8,
         0, h - 16,
-      ], style: "fill:#3b536d");
+      ], style: "fill:#3b536d;stroke:rgba(255,255,255,0.05);stroke-width:1;");
     }
 
     {
@@ -320,7 +320,7 @@ void startLayout() {
         w - 8, h,
         8, h,
         0, h - 8,
-      ], style: "fill:#303d4f", transform: "translate(${linksContent.offsetLeft},${linksContent.offsetTop})");
+      ], style: "fill:#303d4f;stroke:rgba(255,255,255,0.1);stroke-width:1;", transform: "translate(${linksContent.offsetLeft},${linksContent.offsetTop})");
     }
 
     linksBg.children = [e];
@@ -360,23 +360,23 @@ void startLayout() {
         w - 8, h - 8,
         8, h - 8,
         0, h - 16,
-      ], style: "fill:#3b536d");
+      ], style: "fill:#3b536d;stroke:rgba(255,255,255,0.05);stroke-width:1;");
     }
 
-    /*{
+    {
       var w = postsContent.clientWidth;
       var h = postsContent.clientHeight;
       poly(e, [
-        0, 8,
-        8, 0,
-        w - 8, 0,
-        w, 8,
-        w, h - 8,
-        w - 8, h,
-        8, h,
-        0, h - 8,
-      ], style: "fill:#303d4f", transform: "translate(${postsContent.offsetLeft},${postsContent.offsetTop})");
-    }*/
+        0, 7,
+        7, 0,
+        w - 7, 0,
+        w, 7,
+        w, h - 7,
+        w - 7, h,
+        7, h,
+        0, h - 7,
+      ], style: "fill:#303d4f;stroke:rgba(255,255,255,0.1);stroke-width:1;", transform: "translate(${postsContent.offsetLeft},${postsContent.offsetTop})");
+    }
 
     postsBg.children = [e];
 
@@ -416,6 +416,7 @@ void startLayout() {
         w - 20 * 8, h - 8 * 5,
         20 * 8, h - 8 * 5,
         15 * 8, h,
+        15 * 8, h,
         8, h,
         0, h - 8,
       ], style: "fill:#2b3d52");
@@ -441,7 +442,7 @@ void startLayout() {
         15 * 8, h - 8,
         8, h - 8,
         0, h - 16,
-      ], style: "fill:#3b536d");
+      ], style: "fill:#3b536d;stroke:rgba(255,255,255,0.05);stroke-width:1;");
     }
 
     {
@@ -456,7 +457,7 @@ void startLayout() {
         w - 8, h,
         8, h,
         0, h - 8,
-      ], style: "fill:#303d4f", transform: "translate(${projectsContent.offsetLeft},${projectsContent.offsetTop})");
+      ], style: "fill:#303d4f;stroke:rgba(255,255,255,0.1);stroke-width:1;", transform: "translate(${projectsContent.offsetLeft},${projectsContent.offsetTop})");
     }
 
     projectsBg.children = [e];
