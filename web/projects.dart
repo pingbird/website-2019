@@ -49,9 +49,9 @@ void startProjects() {
         DivElement()
           ..classes.add("btn-row")
           ..children.addAll([
-            if (blog != null) btn("icons/proj/github.svg", "Blog"),
-            if (website != null) btn("icons/proj/github.svg", "Website"),
-            if (github != null) btn("icons/proj/github.svg", "GitHub"),
+            if (blog != null) btn("icons/proj/circ.svg", "Blog"),
+            if (website != null) btn("icons/proj/globe.svg", "Website"),
+            if (github != null) btn("icons/proj/github.svg", "Source"),
           ])
       ])
     );
