@@ -258,7 +258,7 @@ body {
 #projects .btn-row {
   display: flex;
   flex-direction: row;
-  margin: 0 0 16px 16px;
+  margin: 0 0 12px 12px;
   justify-content: flex-end;
 }
 
@@ -266,10 +266,10 @@ body {
   background-color: rgba(66, 165, 245, 0.5);
   transition: all 0.25s ease;
   font-weight: bold;
-  border-radius: 6px;
+  border-radius: 4px;
   padding: 6px 20px;
   font-size: 16px;
-  margin-right: 16px;
+  margin-right: 12px;
   cursor: pointer;
   position: relative;
 }
@@ -285,7 +285,7 @@ body {
   top: 0;
   bottom: 0;
   z-index: 1;
-  border-radius: 8px;
+  border-radius: 4px;
   transition: 0.25s all ease;
   border: 2px rgba(255,255,255,0) solid;
   pointer-events: none;
@@ -296,7 +296,7 @@ body {
 }
 
 #projects .btn-icon {
-  margin-right: 8px;
+  margin-right: 18px;
   padding-bottom: 2px;
   vertical-align: middle;
 }
@@ -363,15 +363,17 @@ body {
   display: flex;
   align-items: center;
   padding: 4px 24px 4px 24px;
-  margin-left: 8px;
-  margin-right: 8px;
+  margin-left: 16px;
+  margin-right: 16px;
   border-radius: 4px;
   transition: all ease 0.25s;
   cursor: pointer;
+  border: 2px solid rgba(255, 255, 255, 0);
 }
 
 #links-content .link-row:hover {
   background-color: rgba(215, 215, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.0);
   transition: all ease 0.25s;
 }
 

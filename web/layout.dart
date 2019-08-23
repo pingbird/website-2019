@@ -165,12 +165,12 @@ void startLayout() {
         ...head(os.x, os.y + 56),
         24 * st + os.x, h + 8 * -7 + st * -2,
         26 * st + os.x, h + 8 * -7,
-        os.x + st * 20 + 8 * 9, h - 8 * 7,
-        os.x + st * 24 + 8 * 9, h + 8 * -7 + st * 4,
+        os.x + st * 19 + 8 * 8, h - 8 * 7,
+        os.x + st * 24 + 8 * 9, h + 8 * -6 + st * 5,
         os.x + st * 24 + 8 * 9, h - 8,
         os.x + st * 18 + 8 * 9, h - 8,
-        os.x + st * 18 + 8 * 9, h + 8 * -6 + st * 2,
-        os.x + st * 16 + 8 * 9, h - 8 * 6,
+        os.x + st * 18 + 8 * 9, h + 8 * -5 + st * 2,
+        os.x + st * 16 + 8 * 8, h - 8 * 6,
         22 * st + os.x, h + 8 * -6,
         18 * st + os.x, h + 8 * -6 + st * -4,
       ], style: "fill:#fff", opacity: "0.27");
@@ -187,12 +187,12 @@ void startLayout() {
         ...head(os.x, os.y + 56),
         24 * st + os.x, h + 8 * -6 + st * -4,
         20 * st + os.x, h + 8 * -6,
-        os.x + st * 26 - 8 * 9, h - 8 * 6,
-        os.x + st * 24 - 8 * 9, h + 8 * -6 + st * 2,
+        os.x + st * 26 - 8 * 8, h - 8 * 6,
+        os.x + st * 24 - 8 * 9, h + 8 * -5 + st * 2,
         os.x + st * 24 - 8 * 9, h - 8,
         os.x + st * 18 - 8 * 9, h - 8,
-        os.x + st * 18 - 8 * 9, h + 8 * -7 + st * 4,
-        os.x + st * 22 - 8 * 9, h - 8 * 7,
+        os.x + st * 18 - 8 * 9, h + 8 * -6 + st * 5,
+        os.x + st * 23 - 8 * 8, h - 8 * 7,
         16 * st + os.x, h - 8 * 7,
         18 * st + os.x, h - 8 * 7 + st * -2,
       ], style: "fill:#fff", opacity: "0.27");
@@ -250,13 +250,13 @@ void startLayout() {
         w - 8, h - 8,
         8, h - 8,
         0, h - 16,
-      ], style: "fill:#3b536d;stroke:rgba(255,255,255,0.05);stroke-width:1;");
+      ], style: "fill:#3b536d;stroke:rgba(128, 156, 186, 0.2);stroke-width:1;");
     }
 
     {
       var w = aboutContent.clientWidth;
       var h = aboutContent.clientHeight;
-      poly(e, [
+      var p = [
         0, 8,
         8, 0,
         w - 8, 0,
@@ -265,7 +265,10 @@ void startLayout() {
         w - 8, h,
         8, h,
         0, h - 8,
-      ], style: "fill:#303d4f;stroke:rgba(255,255,255,0.1);stroke-width:1;", transform: "translate(${aboutContent.offsetLeft},${aboutContent.offsetTop})");
+      ];
+
+      poly(e, p, style: "stroke:rgba(128, 156, 186, 0.3);stroke-width:1.5;", transform: "translate(${aboutContent.offsetLeft},${aboutContent.offsetTop})");
+      poly(e, p, style: "fill:#303d4f;", transform: "translate(${aboutContent.offsetLeft},${aboutContent.offsetTop})");
     }
 
     aboutBg.children = [e];
@@ -305,13 +308,13 @@ void startLayout() {
         w - 8, h - 8,
         8, h - 8,
         0, h - 16,
-      ], style: "fill:#3b536d;stroke:rgba(255,255,255,0.05);stroke-width:1;");
+      ], style: "fill:#3b536d;stroke:rgba(128, 156, 186, 0.2);stroke-width:1;");
     }
 
     {
       var w = linksContent.clientWidth;
       var h = linksContent.clientHeight;
-      poly(e, [
+      var p = [
         0, 8,
         8, 0,
         w - 8, 0,
@@ -320,7 +323,10 @@ void startLayout() {
         w - 8, h,
         8, h,
         0, h - 8,
-      ], style: "fill:#303d4f;stroke:rgba(255,255,255,0.1);stroke-width:1;", transform: "translate(${linksContent.offsetLeft},${linksContent.offsetTop})");
+      ];
+
+      poly(e, p, style: "stroke:rgba(128, 156, 186, 0.3);stroke-width:1.5;", transform: "translate(${linksContent.offsetLeft},${linksContent.offsetTop})");
+      poly(e, p, style: "fill:#303d4f;", transform: "translate(${linksContent.offsetLeft},${linksContent.offsetTop})");
     }
 
     linksBg.children = [e];
@@ -360,7 +366,7 @@ void startLayout() {
         w - 8, h - 8,
         8, h - 8,
         0, h - 16,
-      ], style: "fill:#3b536d;stroke:rgba(255,255,255,0.05);stroke-width:1;");
+      ], style: "fill:#3b536d;stroke:rgba(128, 156, 186, 0.2);stroke-width:1;");
     }
 
     {
@@ -375,7 +381,7 @@ void startLayout() {
         w - 7, h,
         7, h,
         0, h - 7,
-      ], style: "fill:#303d4f;stroke:rgba(255,255,255,0.1);stroke-width:1;", transform: "translate(${postsContent.offsetLeft},${postsContent.offsetTop})");
+      ], style: "fill:#303d4f;stroke:rgba(128, 156, 186, 0.3);stroke-width:1;", transform: "translate(${postsContent.offsetLeft},${postsContent.offsetTop})");
     }
 
     postsBg.children = [e];
@@ -442,13 +448,13 @@ void startLayout() {
         15 * 8, h - 8,
         8, h - 8,
         0, h - 16,
-      ], style: "fill:#3b536d;stroke:rgba(255,255,255,0.05);stroke-width:1;");
+      ], style: "fill:#3b536d;stroke:rgba(128, 156, 186, 0.2);stroke-width:1;");
     }
 
     {
       var w = projectsContent.clientWidth;
       var h = projectsContent.clientHeight;
-      poly(e, [
+      var p = [
         0, 8,
         8, 0,
         w - 8, 0,
@@ -457,7 +463,10 @@ void startLayout() {
         w - 8, h,
         8, h,
         0, h - 8,
-      ], style: "fill:#303d4f;stroke:rgba(255,255,255,0.1);stroke-width:1;", transform: "translate(${projectsContent.offsetLeft},${projectsContent.offsetTop})");
+      ];
+
+      poly(e, p, style: "stroke:rgba(128, 156, 186, 0.3);stroke-width:1.5;", transform: "translate(${projectsContent.offsetLeft},${projectsContent.offsetTop})");
+      poly(e, p, style: "fill:#303d4f", transform: "translate(${projectsContent.offsetLeft},${projectsContent.offsetTop})");
     }
 
     projectsBg.children = [e];
