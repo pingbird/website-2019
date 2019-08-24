@@ -17,6 +17,7 @@ void startProjects() {
     String github,
     String website,
     String blog,
+    String bg,
   }) {
     DivElement btn(String icon, String name) =>
       DivElement()
@@ -42,7 +43,8 @@ void startProjects() {
             DivElement()
               ..classes.add("project-title")
               ..text = name,
-          ]),
+          ])
+          ..style.backgroundImage = bg == null ? null : "url(\"$bg\")",
         DivElement()
           ..classes.add("content")
           ..text = content,
@@ -62,6 +64,7 @@ void startProjects() {
     content: "A zachtronics inspired CMOS digital logic simulator. Allows you to create any digital circuit at the silicon level.",
     blog: "",
     website: "",
+    bg: "icons/banner/crc.svg"
   );
 
   add(r1,
@@ -69,6 +72,7 @@ void startProjects() {
     content: "A discord bot with an interactive repl for 50+ languages sandboxed using a full Linux VM.",
     blog: "",
     github: "",
+    bg: "icons/banner/tan.svg"
   );
 
   add(r2,
@@ -76,6 +80,7 @@ void startProjects() {
     content: "An experimental lambda calculus based programming language, includes a comprehensive and innovative standard library.",
     blog: "",
     github: "",
+    bg: "icons/banner/llama.svg",
   );
 
   add(r2,
@@ -86,8 +91,9 @@ void startProjects() {
 
   add(r2,
     name: "DartLua",
-    content: "A Dart library and CLI for running, disassembling, and debugging Lua programs. Includes a functioning Lua bytecode VM and disassembler.",
-    github: ""
+    content: "A Dart library and CLI for running, disassembling, and debugging Lua programs. Includes a functioning bytecode VM and disassembler.",
+    github: "",
+    bg: "icons/banner/lua.svg",
   );
 
   add(r3,
