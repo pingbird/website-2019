@@ -101,6 +101,7 @@ void startProjects() {
     content: "My robot code used in the 2016-2017 VEX Competition “Starstruck”. Includes several high level features never before seen on a vex robot.",
     blog: "",
     github: "",
+    bg: "icons/banner/star.svg",
   );
 
   add(r3,
