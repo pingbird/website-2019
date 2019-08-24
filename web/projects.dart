@@ -85,7 +85,7 @@ void startProjects() {
 
   add(r2,
     name: "^v",
-    content: "Framework to create modular asynchronous networked applications in Lua, primarily used as an IRC bot.",
+    content: "Framework to create modular asynchronous networked applications in Lua, currently used in an advanced IRC bot.",
     github: ""
   );
 
@@ -98,7 +98,7 @@ void startProjects() {
 
   add(r3,
     name: "Starstruck",
-    content: "My robot code used in the 2016-2017 VEX Competition “Starstruck”. Includes several high level features never before seen on a vex robot.",
+    content: "My C++ robot code used in the 2016-2017 VEX Competition “Starstruck”. Includes several high level features never before seen on a vex robot.",
     blog: "",
     github: "",
     bg: "icons/banner/star.svg",
@@ -107,6 +107,7 @@ void startProjects() {
   add(r3,
     name: "Toast",
     content: "An experimental programming language that compiles to brainfuck. Includes type inference, automatic variable initialization and more.",
-    github: ""
+    github: "",
+    bg: "icons/banner/toast.svg",
   );
 }
