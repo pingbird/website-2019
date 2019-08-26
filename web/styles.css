@@ -27,6 +27,8 @@ body {
 #content {
   flex: 1 1 auto;
   margin-top: 128px;
+  padding-left: 8px;
+  padding-right: 8px;
   font-family: 'Nunito', sans-serif;
 }
 
@@ -39,7 +41,7 @@ body {
 }
 
 #tst-text {
-  color: #FFFFFF;
+  color: rgba(255, 255, 255, 0.8);
   font-family: 'Share Tech Mono', monospace;
   font-size: 64px;
   margin-top: 0px;
@@ -48,7 +50,6 @@ body {
   margin-left: 16px;
   margin-right: 16px;
   text-align: center;
-
 }
 
 #tst-btn-row {
@@ -493,10 +494,10 @@ body {
 
 ::-webkit-scrollbar-thumb {
   transition: all 0.2s ease;
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.3);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.5);
 }

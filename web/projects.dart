@@ -69,7 +69,7 @@ void startProjects() {
 
   add(r1,
     name: "Tangent",
-    content: "First of its kind discord bot with an interactive repl for 50+ languages, gives users control over a Linux VM.",
+    content: "First of its kind discord bot with an interactive repl for 50+ languages, gives users full control over a secure Linux VM.",
     blog: "",
     github: "",
     bg: "icons/banner/tan.svg"
