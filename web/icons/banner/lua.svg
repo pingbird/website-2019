@@ -203,15 +203,6 @@
          inkscape:connector-curvature="0"
          clip-path="none" />
     </clipPath>
-    <clipPath
-       clipPathUnits="userSpaceOnUse"
-       id="clipPath1994">
-      <path
-         inkscape:connector-curvature="0"
-         id="path1996"
-         d="m 70.728983,252.83092 a 12.177398,12.214417 0 0 0 -12.177551,12.21476 12.177398,12.214417 0 0 0 12.177551,12.21424 12.177398,12.214417 0 0 0 12.177556,-12.21424 12.177398,12.214417 0 0 0 -2.00298,-6.69261 2.6625381,2.6625381 0 0 1 -0.905889,0.24546 11.291791,11.274545 0 0 1 1.99833,6.38256 11.291791,11.274545 0 0 1 -11.291822,11.27476 11.291791,11.274545 0 0 1 -11.2913,-11.27476 11.291791,11.274545 0 0 1 11.2913,-11.27425 11.291791,11.274545 0 0 1 6.41305,1.99781 2.6625381,2.6625381 0 0 1 0.247529,-0.89659 12.177398,12.214417 0 0 0 -6.635774,-1.97714 z m 3.713988,5.78001 a 2.6622806,2.6622806 0 0 0 -2.66237,2.66185 2.6622806,2.6622806 0 0 0 2.66237,2.66237 2.6622806,2.6622806 0 0 0 2.661854,-2.66237 2.6622806,2.6622806 0 0 0 -2.661854,-2.66185 z"
-         style="display:inline;fill:#000000;fill-opacity:1;stroke-width:0.02573495" />
-    </clipPath>
     <linearGradient
        inkscape:collect="always"
        xlink:href="#linearGradient5877"
@@ -248,10 +239,20 @@
        id="linearGradient2004"
        gradientUnits="userSpaceOnUse"
        gradientTransform="translate(0.03307282,0.01652328)"
-       x1="111.52187"
-       y1="226.22397"
+       x1="87.841667"
+       y1="244.87709"
        x2="41.804169"
        y2="285.75522" />
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath2948">
+      <path
+         style="display:inline;fill:#000000;fill-opacity:1;stroke-width:0.02573495"
+         d="m 70.728983,252.83092 c -6.725584,-8e-5 -12.177739,5.46873 -12.177551,12.21476 9.8e-5,6.74583 5.452171,12.21432 12.177551,12.21424 6.725385,9e-5 12.177458,-5.46841 12.177556,-12.21424 -0.0037,-2.37892 -0.699804,-4.70499 -2.00298,-6.69261 -0.285046,0.13482 -0.591773,0.21793 -0.905889,0.24546 1.297226,1.87679 1.99399,4.10222 1.99833,6.38256 1.19e-4,6.22686 -5.055442,11.27478 -11.291822,11.27476 -6.236176,-2.7e-4 -11.291419,-5.04811 -11.2913,-11.27476 1.64e-4,-6.22645 5.055322,-11.27398 11.2913,-11.27425 2.29117,9e-4 4.527868,0.69767 6.41305,1.99781 0.02926,-0.31107 0.113052,-0.61457 0.247529,-0.89659 -1.974665,-1.28905 -4.279739,-1.97585 -6.635774,-1.97714 z"
+         id="path2950"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="ccccccccccccc" />
+    </clipPath>
   </defs>
   <sodipodi:namedview
      id="base"
@@ -261,8 +262,8 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:zoom="2.8284271"
-     inkscape:cx="187.49113"
-     inkscape:cy="165.31877"
+     inkscape:cx="192.74266"
+     inkscape:cy="121.87422"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -309,7 +310,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -367,7 +368,7 @@
        transform="translate(-0.01653646,2.7450521)" />
     <rect
        mask="none"
-       clip-path="url(#clipPath1994)"
+       clip-path="url(#clipPath2948)"
        style="display:inline;opacity:1;fill:url(#linearGradient2004);fill-opacity:1;stroke:none;stroke-width:0.26458332;stroke-opacity:1"
        id="rect1967"
        width="91.28125"

@@ -86,7 +86,8 @@ void startProjects() {
   add(r2,
     name: "^v",
     content: "Framework to create modular asynchronous networked applications in Lua, currently used in an advanced IRC bot.",
-    github: ""
+    github: "",
+    bg: "icons/banner/caretv.svg",
   );
 
   add(r2,
