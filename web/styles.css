@@ -56,24 +56,33 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin-top: 46px;
+  margin-top: 40px;
 }
 
 #tst-btn-row .tst-btn {
-  cursor: pointer;
   width: 56px;
   height: 56px;
-  transform: translate(0,0);
-  transition: all ease 0.5s;
   background-size: cover;
+}
+
+#tst-btn-row .btn-outer {
+  cursor: pointer;
+  padding: 6px;
+  background-color: rgba(255, 255, 255, 0);
+  transition: all ease 0.25s;
+  border-radius: 8px;
+}
+
+#tst-btn-row .btn-outer:hover {
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 #tst-btn-row .tst-btn:active {
   transition: all ease 0.5s;
 }
 
-#header #tst-btn-row .tst-btn:not(:first-child) {
-  margin-left: 32px;
+#header #tst-btn-row .btn-outer:not(:first-child) {
+  margin-left: 20px;
 }
 
 #about-row {
