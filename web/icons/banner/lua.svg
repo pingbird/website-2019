@@ -261,9 +261,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.8284271"
-     inkscape:cx="192.74266"
-     inkscape:cy="121.87422"
+     inkscape:zoom="45.254834"
+     inkscape:cx="168.41362"
+     inkscape:cy="115.7985"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -345,7 +345,7 @@
        height="52.916668"
        x="0.033072915"
        y="244.09988"
-       transform="translate(-0.01653646,2.7450521)" />
+       transform="translate(0.0010031,4.4405431)" />
     <rect
        y="244.09988"
        x="0.033072915"
@@ -355,7 +355,7 @@
        style="display:inline;opacity:1;fill:url(#linearGradient2000);fill-opacity:1;stroke:none;stroke-width:0.26458332;stroke-opacity:1"
        clip-path="url(#clipPath1979)"
        mask="none"
-       transform="translate(-0.01653646,2.7450521)" />
+       transform="translate(0.0010031,4.4405431)" />
     <rect
        y="244.09988"
        x="0.033072915"
@@ -365,7 +365,7 @@
        style="display:inline;opacity:1;fill:url(#linearGradient2002);fill-opacity:1;stroke:none;stroke-width:0.26458332;stroke-opacity:1"
        clip-path="url(#clipPath1975)"
        mask="none"
-       transform="translate(-0.01653646,2.7450521)" />
+       transform="translate(0.0010031,4.4405431)" />
     <rect
        mask="none"
        clip-path="url(#clipPath2948)"
@@ -375,7 +375,7 @@
        height="52.916668"
        x="0.033072915"
        y="244.09988"
-       transform="translate(-0.01653646,2.7450521)" />
+       transform="translate(0.0010031,4.4405431)" />
     <rect
        y="244.09988"
        x="0.033072915"
@@ -385,6 +385,6 @@
        style="display:inline;opacity:1;fill:url(#linearGradient5863-5);fill-opacity:1;stroke:none;stroke-width:0.26458332;stroke-opacity:1"
        clip-path="url(#clipPath1990)"
        mask="none"
-       transform="translate(-0.01653646,2.7450521)" />
+       transform="translate(0.0010031,4.4405431)" />
   </g>
 </svg>

@@ -77,6 +77,10 @@ body {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
+#tst-btn-row .btn-outer:active {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
 #tst-btn-row .tst-btn:active {
   transition: all ease 0.5s;
 }
@@ -217,7 +221,14 @@ body {
   flex-wrap: wrap;
 }
 
+@media screen and (max-width: 1157px) {
+  #projects .project {
+    flex: 1;
+  }
+}
+
 #projects .project {
+  min-width: 345px;
   width: 345px;
   height: 384px;
   margin: 8px;
@@ -244,6 +255,7 @@ body {
 #projects .project-header {
   background-color: rgba(66, 165, 245, 0.6);
   background-size: cover;
+  background-position: center;
   height: 200px;
   width: 100%;
   border-radius: 8px 8px 0 0;
@@ -287,6 +299,10 @@ body {
 
 #projects .btn:hover {
   background-color: rgba(66, 165, 245, 0.7);
+}
+
+#projects .btn:active {
+  background-color: rgba(66, 165, 245, 0.6);
 }
 
 #projects .btn-bg {
