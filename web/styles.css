@@ -11,6 +11,10 @@ html, body {
   overflow-x: hidden;
 }
 
+a {
+  text-decoration: none;
+}
+
 body {
   background: #202020;
   background-size: cover;
@@ -41,7 +45,7 @@ body {
 
 #tst-text {
   color: rgba(255, 255, 255, 0.8);
-  background-image: url("/logo_white_hdpi.png");
+  background-image: url("logo_white_hdpi.png");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -155,7 +159,6 @@ body {
   margin: 8px 8px 24px;
   padding: 16px 16px 16px 16px;
   color: #FFFFFF;
-  white-space: pre-wrap;
   font-family: 'Nunito', sans-serif;
   font-size: 18px;
 }
@@ -349,7 +352,7 @@ body {
   font-weight: bold;
 }
 
-#links-content.shrink .link-row {
+#links-content.shrink a.link-row {
   border-radius: 4px;
 }
 
@@ -390,7 +393,7 @@ body {
   height: 100%;
 }
 
-#links-content .link-row {
+#links-content a.link-row {
   font-family: 'Nunito', sans-serif;
   font-size: 20px;
   color: #EFEFEF;
