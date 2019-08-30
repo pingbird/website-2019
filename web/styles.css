@@ -26,7 +26,7 @@ body {
 
 #content {
   flex: 1 1 auto;
-  margin-top: 128px;
+  margin-top: 64px;
   padding-left: 8px;
   padding-right: 8px;
   font-family: 'Nunito', sans-serif;
@@ -34,7 +34,6 @@ body {
 
 #header {
   width: 100%;
-  height: 396px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -42,13 +41,15 @@ body {
 
 #tst-text {
   color: rgba(255, 255, 255, 0.8);
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 64px;
-  margin-top: 0px;
+  background-image: url("https://me.tst.sh/img/logo_white_hdpi.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin: 16px auto;
   height: 224px;
+  max-width: 600px;
+  width: 100%;
   line-height: 224px;
-  margin-left: 16px;
-  margin-right: 16px;
   text-align: center;
 }
 
@@ -56,13 +57,14 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin-top: 40px;
+  margin-bottom: 40px;
 }
 
 #tst-btn-row .tst-btn {
   width: 56px;
   height: 56px;
   background-size: cover;
+  filter: drop-shadow(0px 0px 7px #24537c);
 }
 
 #tst-btn-row .btn-outer {
@@ -260,7 +262,7 @@ body {
 }
 
 #projects .project-header {
-  background-color: rgba(66, 165, 245, 0.4);
+  background-color: rgba(66, 165, 245, 0.6);
   background-size: cover;
   background-position: center;
   height: 200px;
@@ -320,12 +322,12 @@ body {
   z-index: 1;
   border-radius: 4px;
   transition: 0.25s all ease;
-  border: 2px rgba(255,255,255,0.06) solid;
+  border: 1px rgba(255,255,255,0.06) solid;
   pointer-events: none;
 }
 
 #projects .btn:hover .btn-bg {
-  border: 2px rgba(255,255,255,0.1) solid;
+  border: 1px rgba(255,255,255,0.1) solid;
 }
 
 #projects .btn-icon {
@@ -516,7 +518,7 @@ body {
 
 ::-webkit-scrollbar {
   width: 6px;
-  border-radius: 5px;
+  background-color: #303d4f;
 }
 
 ::-webkit-scrollbar-track {
@@ -525,7 +527,7 @@ body {
 
 ::-webkit-scrollbar-thumb {
   transition: all 0.2s ease;
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.2);
   border-radius: 4px;
 }
 

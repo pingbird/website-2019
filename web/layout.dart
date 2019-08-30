@@ -4,6 +4,7 @@ import 'dart:svg';
 
 void startLayout() {
   var body = querySelector("body");
+  var bodyBg = querySelector("#body-bg");
   var content = querySelector("#content");
   var contentBg = querySelector("#content-bg");
   var header = querySelector("#header");
@@ -224,6 +225,58 @@ void startLayout() {
     }
 
     contentBg.children = [e];
+  }
+
+  renderBody() {
+    var e = SvgSvgElement();
+
+    var defs = SvgElement.tag("defs");
+
+    defs.children.add(
+      SvgElement.tag("linearGradient")
+        ..attributes["id"] = "blue"
+        ..attributes["x1"] = "0%"
+        ..attributes["x2"] = "0%"
+        ..attributes["x2"] = "100%"
+        ..attributes["y2"] = "100%"
+        ..children.addAll([
+          SvgElement.tag("stop")
+            ..attributes["offset"] = "0%"
+            ..style.setProperty("stop-color", "#2a70b3")
+            ..style.setProperty("stop-opacity", "0.9"),
+
+          SvgElement.tag("stop")
+            ..attributes["offset"] = "100%"
+            ..style.setProperty("stop-color", "#3c82bc")
+            ..style.setProperty("stop-opacity", "0.9"),
+        ])
+    );
+
+    e.children.add(defs);
+
+    var w = body.clientWidth;
+    var h = header.documentOffset.y + header.clientHeight;
+
+    var l = content.documentOffset.x;
+    var r = l + content.clientWidth;
+
+    var p = [
+      0, 0,
+      w, 0,
+      w, if (shrink < 1) h - 5 * 8 else h,
+      if (shrink < 1) ...[
+        r - 32 * 8, h - 5 * 8,
+        r - 37 * 8, h,
+        l + 37 * 8, h,
+        l + 32 * 8, h - 5 * 8,
+      ],
+      0, if (shrink < 1) h - 5 * 8 else h,
+    ];
+
+    poly(e, p, style: "stroke:#2a70b3;stroke-width:1.5;");
+    poly(e, p, style: "fill:url(#blue);");
+
+    bodyBg.children = [e];
   }
 
   void renderAbout() {
@@ -490,7 +543,6 @@ void startLayout() {
     aboutRow.style.marginTop = shrink > 0 ? "16px" : "";
 
     links.style.marginLeft = shrink > 0 ? "0" : "";
-    links.style.marginTop = shrink > 0 ? "16px" : "";
     links.style.width = shrink > 0 ? "100%" : "";
     links.style.maxWidth = shrink > 0 ? "none" : "";
 
@@ -506,12 +558,14 @@ void startLayout() {
 
     //links.style.flex = shrink > 0 ? "16px" : "0";
 
-    var marg = "${max(8, min(128, max(0, ((body.clientWidth - 1170) / 2).floor())))}px";
-    content.style.marginTop = marg;
+    var m = max(8, min(128, max(0, ((body.clientWidth - 1170) / 2).floor())));
+    var marg = "${m}px";
+    tstText.style.margin = "${m ~/ 2}px auto";
     content.style.marginBottom = marg;
 
     // renderHeader();
     // renderContent();
+    renderBody();
     renderAbout();
     renderLinks();
     renderPosts();
