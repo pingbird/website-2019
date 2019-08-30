@@ -41,7 +41,7 @@ body {
 
 #tst-text {
   color: rgba(255, 255, 255, 0.8);
-  background-image: url("https://me.tst.sh/img/logo_white_hdpi.png");
+  background-image: url("/logo_white_hdpi.png");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
