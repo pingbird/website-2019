@@ -15,12 +15,14 @@ void startProjects() {
     String name,
     String content,
     String github,
+    String gitlab,
     String website,
     String blog,
     String bg,
   }) {
-    DivElement btn(String icon, String name) =>
-      DivElement()
+    AnchorElement btn(String icon, String name, String url) =>
+      AnchorElement()
+        ..href = url
         ..classes.add("btn")
         ..children.addAll([
           DivElement()..classes.add("btn-bg"),
@@ -51,9 +53,10 @@ void startProjects() {
         DivElement()
           ..classes.add("btn-row")
           ..children.addAll([
-            if (blog != null) btn("icons/proj/circ.svg", "Blog"),
-            if (website != null) btn("icons/proj/globe.svg", "Website"),
-            if (github != null) btn("icons/proj/github.svg", "Source"),
+            if (blog != null) btn("icons/proj/circ.svg", "Blog", blog),
+            if (website != null) btn("icons/proj/globe.svg", "Website", website),
+            if (github != null) btn("icons/proj/github.svg", "Source", github),
+            if (gitlab != null) btn("icons/proj/gitlab.svg", "Source", gitlab),
           ])
       ])
     );
@@ -62,53 +65,53 @@ void startProjects() {
   add(r1,
     name: "c.tst.sh",
     content: "A zachtronics inspired CMOS digital logic simulator. Allows you to create any digital circuit at the silicon level.",
-    blog: "",
-    website: "",
+    blog: "https://blog.tst.sh/kohctpyktop-2-electric-bogaloo/",
+    website: "https://c.tst.sh/",
     bg: "icons/banner/crc.svg"
   );
 
   add(r1,
     name: "Tangent",
     content: "First of its kind discord bot with an interactive repl for 50+ languages, gives users full control over a secure Linux VM.",
-    blog: "",
-    github: "",
+    blog: "https://github.com/PixelToast/tangent",
+    github: "https://github.com/PixelToast/tangent",
     bg: "icons/banner/tan.svg"
   );
 
   add(r2,
     name: "Llama",
     content: "An experimental lambda calculus based programming language, includes a comprehensive and innovative standard library.",
-    blog: "",
-    github: "",
+    blog: "https://blog.tst.sh/llama/",
+    github: "https://github.com/PixelToast/llama",
     bg: "icons/banner/llama.svg",
   );
 
   add(r2,
     name: "^v",
     content: "Framework to create modular asynchronous networked applications in Lua, currently used in an advanced IRC bot.",
-    github: "",
+    github: "https://github.com/xpcall/-v",
     bg: "icons/banner/caretv.svg",
   );
 
   add(r2,
     name: "DartLua",
     content: "A Dart library and CLI for running, disassembling, and debugging Lua programs. Includes a functioning bytecode VM and disassembler.",
-    github: "",
+    github: "https://github.com/PixelToast/dartlua",
     bg: "icons/banner/lua.svg",
   );
 
   add(r3,
     name: "Starstruck",
     content: "My C++ robot code used in the 2016-2017 VEX Competition “Starstruck”. Includes several high level features never before seen on a vex robot.",
-    blog: "",
-    github: "",
+    blog: "https://blog.tst.sh/8762a-overcomplicated-code-release/",
+    gitlab: "https://lab.pxtst.com/PixelToast/8762A-2016/tree/master/src",
     bg: "icons/banner/star.svg",
   );
 
   add(r3,
     name: "Toast",
     content: "An experimental programming language that compiles to brainfuck. Includes type inference, automatic variable initialization and more.",
-    github: "",
+    gitlab: "https://lab.tst.sh/PixelToast/bfexpr",
     bg: "icons/banner/toast.svg",
   );
 }
