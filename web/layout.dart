@@ -5,6 +5,7 @@ import 'dart:svg';
 void startLayout() {
   var body = querySelector("body");
   var content = querySelector("#content");
+  var contentBg = querySelector("#content-bg");
   var header = querySelector("#header");
   var headerBg = querySelector("#header-bg");
   var tstText = querySelector("#tst-text");
@@ -128,6 +129,13 @@ void startLayout() {
       ], style: "fill:url(#blue)", transform: "translate(${tstText.offsetLeft},${tstText.offsetTop})");
     }
 
+    headerBg.children = [e];
+  }
+
+  void renderContent() {
+    var e = SvgSvgElement();
+
+
     var btns = querySelectorAll("#tst-btn-row .tst-btn");
     const st = 8 / 6;
 
@@ -141,79 +149,81 @@ void startLayout() {
         24 * st + ox, oy + 3 * st,
       ];
 
-      var w = header.clientWidth;
-      var h = header.clientHeight;
+      var w = content.clientWidth;
+      var h = content.clientHeight;
 
+      var os = btns[0].documentOffset - content.documentOffset;
 
-      var os = btns[0].offsetTo(header);
+      var ch = os.y + 8 * 17;
+
       poly(e, [
         ...head(os.x, os.y + 56),
-        24 * st + os.x, h + 8 * -5 + st * -2,
-        26 * st + os.x, h + 8 * -5,
-        os.x + st * 20 + 8 * 18, h - 8 * 5,
-        os.x + st * 24 + 8 * 18, h + 8 * -5 + st * 4,
+        24 * st + os.x, ch + 8 * -5 + st * -2,
+        26 * st + os.x, ch + 8 * -5,
+        os.x + st * 20 + 8 * 18, ch + 8 * -5,
+        os.x + st * 24 + 8 * 18, ch + 8 * -5 + st * 4,
         os.x + st * 24 + 8 * 18, h - 8,
         os.x + st * 18 + 8 * 18, h - 8,
-        os.x + st * 18 + 8 * 18, h + 8 * -4 + st * 2,
-        os.x + st * 16 + 8 * 18, h - 8 * 4,
-        22 * st + os.x, h + 8 * -4,
-        18 * st + os.x, h + 8 * -4 + st * -4,
-      ], style: "fill:#fff", opacity: "0.27");
+        os.x + st * 18 + 8 * 18, ch + 8 * -4 + st * 2,
+        os.x + st * 16 + 8 * 18, ch - 8 * 4,
+        22 * st + os.x, ch + 8 * -4,
+        18 * st + os.x, ch + 8 * -4 + st * -4,
+      ], style: "fill:#fff", opacity: "0.2");
 
-      os = btns[1].offsetTo(header);
+      os = btns[1].documentOffset - content.documentOffset;
       poly(e, [
         ...head(os.x, os.y + 56),
-        24 * st + os.x, h + 8 * -7 + st * -2,
-        26 * st + os.x, h + 8 * -7,
-        os.x + st * 19 + 8 * 8, h - 8 * 7,
-        os.x + st * 24 + 8 * 9, h + 8 * -6 + st * 5,
+        24 * st + os.x, ch + 8 * -7 + st * -2,
+        26 * st + os.x, ch + 8 * -7,
+        os.x + st * 19 + 8 * 8, ch - 8 * 7,
+        os.x + st * 24 + 8 * 9, ch + 8 * -6 + st * 5,
         os.x + st * 24 + 8 * 9, h - 8,
         os.x + st * 18 + 8 * 9, h - 8,
-        os.x + st * 18 + 8 * 9, h + 8 * -5 + st * 2,
-        os.x + st * 16 + 8 * 8, h - 8 * 6,
-        22 * st + os.x, h + 8 * -6,
-        18 * st + os.x, h + 8 * -6 + st * -4,
-      ], style: "fill:#fff", opacity: "0.27");
+        os.x + st * 18 + 8 * 9, ch + 8 * -5 + st * 2,
+        os.x + st * 16 + 8 * 8, ch - 8 * 6,
+        22 * st + os.x, ch + 8 * -6,
+        18 * st + os.x, ch + 8 * -6 + st * -4,
+      ], style: "fill:#fff", opacity: "0.2");
 
-      os = btns[2].offsetTo(header);
+      os = btns[2].documentOffset - content.documentOffset;
       poly(e, [
         ...head(os.x, os.y + 56),
         os.x + st * 24, h - 8,
         os.x + st * 18, h - 8,
-      ], style: "fill:#fff", opacity: "0.27");
+      ], style: "fill:#fff", opacity: "0.2");
 
-      os = btns[3].offsetTo(header);
+      os = btns[3].documentOffset - content.documentOffset;
       poly(e, [
         ...head(os.x, os.y + 56),
-        24 * st + os.x, h + 8 * -6 + st * -4,
-        20 * st + os.x, h + 8 * -6,
-        os.x + st * 26 - 8 * 8, h - 8 * 6,
-        os.x + st * 24 - 8 * 9, h + 8 * -5 + st * 2,
+        24 * st + os.x, ch + 8 * -6 + st * -4,
+        20 * st + os.x, ch + 8 * -6,
+        os.x + st * 26 - 8 * 8, ch - 8 * 6,
+        os.x + st * 24 - 8 * 9, ch + 8 * -5 + st * 2,
         os.x + st * 24 - 8 * 9, h - 8,
         os.x + st * 18 - 8 * 9, h - 8,
-        os.x + st * 18 - 8 * 9, h + 8 * -6 + st * 5,
-        os.x + st * 23 - 8 * 8, h - 8 * 7,
-        16 * st + os.x, h - 8 * 7,
-        18 * st + os.x, h - 8 * 7 + st * -2,
-      ], style: "fill:#fff", opacity: "0.27");
+        os.x + st * 18 - 8 * 9, ch + 8 * -6 + st * 5,
+        os.x + st * 23 - 8 * 8, ch - 8 * 7,
+        16 * st + os.x, ch - 8 * 7,
+        18 * st + os.x, ch - 8 * 7 + st * -2,
+      ], style: "fill:#fff", opacity: "0.2");
 
-      os = btns[4].offsetTo(header);
+      os = btns[4].documentOffset - content.documentOffset;
       poly(e, [
         ...head(os.x, os.y + 56),
-        24 * st + os.x, h + 8 * -4 + st * -4,
-        20 * st + os.x, h + 8 * -4,
-        os.x + st * 26 - 8 * 18, h - 8 * 4,
-        os.x + st * 24 - 8 * 18, h + 8 * -4 + st * 2,
+        24 * st + os.x, ch + 8 * -4 + st * -4,
+        20 * st + os.x, ch + 8 * -4,
+        os.x + st * 26 - 8 * 18, ch - 8 * 4,
+        os.x + st * 24 - 8 * 18, ch + 8 * -4 + st * 2,
         os.x + st * 24 - 8 * 18, h - 8,
         os.x + st * 18 - 8 * 18, h - 8,
-        os.x + st * 18 - 8 * 18, h + 8 * -5 + st * 4,
-        os.x + st * 22 - 8 * 18, h - 8 * 5,
-        16 * st + os.x, h - 8 * 5,
-        18 * st + os.x, h - 8 * 5 + st * -2,
-      ], style: "fill:#fff", opacity: "0.27");
+        os.x + st * 18 - 8 * 18, ch + 8 * -5 + st * 4,
+        os.x + st * 22 - 8 * 18, ch - 8 * 5,
+        16 * st + os.x, ch - 8 * 5,
+        18 * st + os.x, ch - 8 * 5 + st * -2,
+      ], style: "fill:#fff", opacity: "0.2");
     }
 
-    headerBg.children = [e];
+    contentBg.children = [e];
   }
 
   void renderAbout() {
@@ -500,7 +510,8 @@ void startLayout() {
     content.style.marginTop = marg;
     content.style.marginBottom = marg;
 
-    renderHeader();
+    // renderHeader();
+    // renderContent();
     renderAbout();
     renderLinks();
     renderPosts();

@@ -96,13 +96,16 @@ body {
 }
 
 #about {
+  filter: drop-shadow(0px 0px 3px #191919);
   flex: 1;
   display: flex;
   flex-direction: column;
   position: relative;
+
 }
 
 #recent-posts {
+  filter: drop-shadow(0px 0px 3px #191919);
   height: 432px;
   display: flex;
   flex-direction: column;
@@ -111,6 +114,7 @@ body {
 }
 
 #projects {
+  filter: drop-shadow(0px 0px 3px #191919);
   margin-top: 16px;
   display: flex;
   flex-direction: column;
@@ -118,6 +122,7 @@ body {
 }
 
 #links {
+  filter: drop-shadow(0px 0px 3px #191919);
   margin-left: 16px;
   flex: 1 1 auto;
   display: flex;
@@ -237,6 +242,8 @@ body {
   position: relative;
   display: flex;
   flex-direction: column;
+  background-color: rgba(59, 83, 109, 0.8);
+  filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.05));
 }
 
 #projects .project-bg {
@@ -248,12 +255,12 @@ body {
   z-index: 1;
   border-radius: 8px;
   transition: 0.25s all ease;
-  border: 2px rgba(255,255,255,0.2) solid;
   pointer-events: none;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 #projects .project-header {
-  background-color: rgba(66, 165, 245, 0.6);
+  background-color: rgba(66, 165, 245, 0.4);
   background-size: cover;
   background-position: center;
   height: 200px;
@@ -286,7 +293,6 @@ body {
 }
 
 #projects .btn {
-  background-color: rgba(66, 165, 245, 0.5);
   transition: all 0.25s ease;
   font-weight: bold;
   border-radius: 4px;
@@ -298,11 +304,11 @@ body {
 }
 
 #projects .btn:hover {
-  background-color: rgba(66, 165, 245, 0.7);
+  background-color: rgba(215, 215, 255, 0.1);
 }
 
 #projects .btn:active {
-  background-color: rgba(66, 165, 245, 0.6);
+  background-color: rgba(215, 215, 255, 0.1);
 }
 
 #projects .btn-bg {
@@ -314,12 +320,12 @@ body {
   z-index: 1;
   border-radius: 4px;
   transition: 0.25s all ease;
-  border: 2px rgba(255,255,255,0) solid;
+  border: 2px rgba(255,255,255,0.06) solid;
   pointer-events: none;
 }
 
 #projects .btn:hover .btn-bg {
-  border: 2px rgba(255,255,255,0.3) solid;
+  border: 2px rgba(255,255,255,0.1) solid;
 }
 
 #projects .btn-icon {
