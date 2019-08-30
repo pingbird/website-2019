@@ -2,6 +2,7 @@
 RED=''
 NC=''
 
+rm -rf build
 echo "${RED}executing pub build${NC}"
 webdev build --release
 cd build

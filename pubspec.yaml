@@ -9,6 +9,7 @@ environment:
 
 dependencies:
   xml: any
+  font_face_observer: any
 #  path: ^1.4.1
 
 dev_dependencies:

@@ -73,8 +73,6 @@ void startBlog() async {
     var res = await _timeoutRequest("https://blog.tst.sh/rss/", timeout: 5.0);
     var doc = xml.parse(res);
 
-    // throw "Big gay";
-
     xml.XmlElement find(xml.XmlNode p, String name) {
       for (var c in p.children) {
         if (c is xml.XmlElement && c.name.toString() == name) return c;
@@ -94,12 +92,10 @@ void startBlog() async {
     var posts = findAll(channel, "item");
 
     var postsContent = querySelector("#recent-posts-content");
-    //postsContent.children.clear();
 
     var postBgs = <DivElement>[];
-    var postElms = <DivElement>[];
+    var postElms = <HtmlElement>[];
     String transTo;
-    String transTitle;
     Timer transTimer;
     Timer resetTimer;
     DateTime resetLast;
@@ -113,11 +109,10 @@ void startBlog() async {
       var title = cdata(find(post, "title"));
       var categories = findAll(post, "category").map(cdata).toSet();
       var banner = find(post, "media:content").attributes.firstWhere((e) => e.name.toString() == "url").value;
+      var href = find(post, "link").text;
 
-      print(title);
-      print(categories);
-
-      var c = DivElement()
+      var c = AnchorElement()
+        ..href = href
         ..classes.add("blog-post")
         ..children.addAll([
           DivElement()
@@ -130,11 +125,8 @@ void startBlog() async {
         ]);
 
       c.onMouseEnter.listen((e) {
-        print("enter");
-
         if (resetTimer != null && DateTime.now().difference(resetLast).inMilliseconds > 50) {
           bgBack.style.backgroundImage = "none";
-          print("reset");
         }
 
         if (transTo != null) {
@@ -146,13 +138,9 @@ void startBlog() async {
         resetTimer?.cancel();
         resetTimer = null;
 
-
-        print(">>>> (${bgBack.style.backgroundImage})");
-
         if (true) {
           bgMainDiv.style.transition = "default";
           bgMainDiv.classes.remove("blog-posts-bg");
-          if (bgMainDiv.offsetWidth != bgMainDiv.offsetWidth) print("mmm, yes");
           bgMainDiv.classes.add("blog-posts-bg");
           bgMainDiv.style.transition = "all 0.5s ease";
         }
@@ -160,8 +148,6 @@ void startBlog() async {
         bgMain.style.backgroundImage = 'url("$banner")';
         bgMainDiv.style.opacity = "1";
         transTo = banner;
-        transTitle = title;
-        print("whee $transTitle ${bgMainDiv.getComputedStyle().opacity}");
         transTimer = Timer(Duration(milliseconds: 500), () {
           bgMainDiv.style.opacity = "0";
           bgBack.style.backgroundImage = "url($transTo)";
