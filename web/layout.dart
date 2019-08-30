@@ -462,7 +462,6 @@ void startLayout() {
       "8px ${h}px,"
       "0px ${h - 8}px"
       ")";
-    print(path);
     postsContent.style.clipPath = path;
   }
 
@@ -538,6 +537,7 @@ void startLayout() {
   void render() {
     shrink = 0;
     if (body.clientWidth < 1098) shrink++;
+    if (body.clientWidth < 700) shrink++;
 
     aboutRow.style.flexDirection = shrink > 0 ? "column" : "row";
     aboutRow.style.marginTop = shrink > 0 ? "16px" : "";
@@ -556,11 +556,12 @@ void startLayout() {
       linksContent.classes.remove("shrink");
     }
 
-    //links.style.flex = shrink > 0 ? "16px" : "0";
+    links.style.marginTop = shrink > 0 ? "16px" : "";
 
     var m = max(8, min(128, max(0, ((body.clientWidth - 1170) / 2).floor())));
     var marg = "${m}px";
     tstText.style.margin = "${m ~/ 2}px auto";
+    tstText.style.maxWidth = shrink > 1 ? "512px" : "";
     content.style.marginBottom = marg;
 
     // renderHeader();
