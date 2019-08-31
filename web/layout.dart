@@ -537,7 +537,7 @@ void startLayout() {
   void render() {
     shrink = 0;
     if (body.clientWidth < 1098) shrink++;
-    if (body.clientWidth < 700) shrink++;
+    if (body.clientWidth < 600) shrink++;
 
     aboutRow.style.flexDirection = shrink > 0 ? "column" : "row";
     aboutRow.style.marginTop = shrink > 0 ? "16px" : "";
@@ -545,8 +545,6 @@ void startLayout() {
     links.style.marginLeft = shrink > 0 ? "0" : "";
     links.style.width = shrink > 0 ? "100%" : "";
     links.style.maxWidth = shrink > 0 ? "none" : "";
-
-    tstText.style.fontSize = shrink > 0 ? "48px" : "";
 
     linksContent.style.flexDirection = shrink > 0 ? "row" : "";
 
@@ -561,7 +559,7 @@ void startLayout() {
     var m = max(8, min(128, max(0, ((body.clientWidth - 1170) / 2).floor())));
     var marg = "${m}px";
     tstText.style.margin = "${m ~/ 2}px auto";
-    tstText.style.maxWidth = shrink > 1 ? "512px" : "";
+    tstText.style.maxWidth = shrink > 1 ? "400px" : "";
     content.style.marginBottom = marg;
 
     // renderHeader();
