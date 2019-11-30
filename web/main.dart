@@ -1,6 +1,6 @@
-import 'blog.dart';
-import 'layout.dart';
-import 'projects.dart';
+import 'package:w2019/blog.dart';
+import 'package:w2019/layout.dart';
+import 'package:w2019/projects.dart';
 import 'package:font_face_observer/font_face_observer.dart';
 
 void main() async {
