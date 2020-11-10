@@ -188,7 +188,7 @@
   </defs>
   <sodipodi:namedview
      id="base"
-     pagecolor="#303d4f"
+     pagecolor="$chipInner"
      bordercolor="#666666"
      borderopacity="1.0"
      inkscape:pageopacity="0"

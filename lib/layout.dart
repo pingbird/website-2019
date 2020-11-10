@@ -47,6 +47,12 @@ void startLayout() {
     parent.children.add(p);
   }
 
+  const chipPrimary = '#36393f';
+  const chipUnder = '#41454c';
+  const chipInner = chipPrimary;
+  const chipEdge = '#525760';
+  const edgeWidth = 3;
+
   void renderHeader() {
     print("hello");
     var e = SvgSvgElement();
@@ -95,7 +101,7 @@ void startLayout() {
         ],
         8, h - 5 * 8,
         0, h - 6 * 8,
-      ], style: "fill:#2b3d52");
+      ], style: "fill:$chipUnder");
 
       poly(e, [
         0, 8,
@@ -112,7 +118,7 @@ void startLayout() {
         ],
         8, h - 6 * 8,
         0, h - 7 * 8,
-      ], style: "fill:#3b536d");
+      ], style: "fill:$chipPrimary");
     }
 
     if (showTitleBg) {
@@ -296,7 +302,7 @@ void startLayout() {
         w - 8, h,
         8, h,
         0, h - 8,
-      ], style: "fill:#2b3d52");
+      ], style: "fill:$chipUnder");
     }
 
     {
@@ -313,7 +319,24 @@ void startLayout() {
         w - 8, h - 8,
         8, h - 8,
         0, h - 16,
-      ], style: "fill:#3b536d;stroke:rgba(128, 156, 186, 0.1);stroke-width:1;");
+      ], style: "fill:$chipEdge;");
+    }
+
+    {
+      var w = about.clientWidth;
+      var h = about.clientHeight;
+      poly(e, [
+        0.5, 8,
+        8, 0.5,
+        30 * 8 - 0.3, 0.5,
+        35 * 8 - 0.3, 0.5 + 8 * 5,
+        w - 8 - 0.3, 0.5 + 8 * 5,
+        w - 0.5, 8 * 6 + 0.3,
+        w - 0.5, h - 16 - 0.3,
+        w - 8 - 0.3, h - 8 - 0.5,
+        8 + 0.3, h - 8 - 0.5,
+        0.5, h - 16 - 0.3,
+      ], style: "fill:$chipPrimary;");
     }
 
     {
@@ -330,8 +353,7 @@ void startLayout() {
         0, h - 8,
       ];
 
-      poly(e, p, style: "stroke:rgba(128, 156, 186, 0.1);stroke-width:1.5;", transform: "translate(${aboutContent.offsetLeft},${aboutContent.offsetTop})");
-      poly(e, p, style: "fill:#303d4f;", transform: "translate(${aboutContent.offsetLeft},${aboutContent.offsetTop})");
+      poly(e, p, style: "fill:$chipInner;", transform: "translate(${aboutContent.offsetLeft},${aboutContent.offsetTop})");
     }
 
     aboutBg.children = [e];
@@ -354,7 +376,7 @@ void startLayout() {
         w - 8, h,
         8, h,
         0, h - 8,
-      ], style: "fill:#2b3d52");
+      ], style: "fill:$chipUnder");
     }
 
     {
@@ -371,7 +393,24 @@ void startLayout() {
         w - 8, h - 8,
         8, h - 8,
         0, h - 16,
-      ], style: "fill:#3b536d;stroke:rgba(128, 156, 186, 0.2);stroke-width:1;");
+      ], style: "fill:$chipEdge");
+    }
+
+    {
+      var w = links.clientWidth;
+      var h = links.clientHeight;
+      poly(e, [
+        0.5, 8 * 6 + 0.3,
+        8 + 0.3, 8 * 5 + 0.5,
+        w - 35 * 8 + 0.3, 8 * 5 + 0.5,
+        w - 30 * 8 + 0.3, 0.5,
+        w - 8 - 0.3, 0.5,
+        w - 0.5, 8 + 0.3,
+        w - 0.5, h - 16 - 0.3,
+        w - 8 - 0.3, h - 8 - 0.5,
+        8 - 0.3, h - 8 - 0.5,
+        0.5, h - 16 - 0.3,
+      ], style: "fill:$chipPrimary");
     }
 
     {
@@ -388,8 +427,7 @@ void startLayout() {
         0, h - 8,
       ];
 
-      poly(e, p, style: "stroke:rgba(128, 156, 186, 0.1);stroke-width:1.5;", transform: "translate(${linksContent.offsetLeft},${linksContent.offsetTop})");
-      poly(e, p, style: "fill:#303d4f;", transform: "translate(${linksContent.offsetLeft},${linksContent.offsetTop})");
+      poly(e, p, style: "fill:$chipInner;", transform: "translate(${linksContent.offsetLeft},${linksContent.offsetTop})");
     }
 
     linksBg.children = [e];
@@ -412,7 +450,7 @@ void startLayout() {
         w - 8, h,
         8, h,
         0, h - 8,
-      ], style: "fill:#2b3d52");
+      ], style: "fill:$chipUnder");
     }
 
     {
@@ -429,22 +467,24 @@ void startLayout() {
         w - 8, h - 8,
         8, h - 8,
         0, h - 16,
-      ], style: "fill:#3b536d;stroke:rgba(128, 156, 186, 0.2);stroke-width:1;");
+      ], style: "fill:$chipEdge");
     }
 
     {
-      var w = postsContent.clientWidth;
-      var h = postsContent.clientHeight;
+      var w = posts.clientWidth;
+      var h = posts.clientHeight;
       poly(e, [
-        0, 7,
-        7, 0,
-        w - 7, 0,
-        w, 7,
-        w, h - 7,
-        w - 7, h,
-        7, h,
-        0, h - 7,
-      ], style: "fill:#303d4f;stroke:rgba(128, 156, 186, 0.3);stroke-width:1;", transform: "translate(${postsContent.offsetLeft},${postsContent.offsetTop})");
+        0.5, 8 + 0.3,
+        8 + 0.3, 0.5,
+        30 * 8 - 0.3, 0.5,
+        35 * 8 - 0.3, 8 * 5 + 0.5,
+        w - 8 - 0.3, 8 * 5 + 0.5,
+        w - 0.5, 8 * 6 - 0.3,
+        w - 0.5, h - 16 - 0.3,
+        w - 8 - 0.3, h - 8 - 0.5,
+        8 + 0.5, h - 8 - 0.5,
+        0 + 0.5, h - 16 - 0.3,
+      ], style: "fill:$chipPrimary");
     }
 
     postsBg.children = [e];
@@ -487,7 +527,7 @@ void startLayout() {
         15 * 8, h,
         8, h,
         0, h - 8,
-      ], style: "fill:#2b3d52");
+      ], style: "fill:$chipUnder");
     }
 
     {
@@ -510,7 +550,30 @@ void startLayout() {
         15 * 8, h - 8,
         8, h - 8,
         0, h - 16,
-      ], style: "fill:#3b536d;stroke:rgba(128, 156, 186, 0.2);stroke-width:1;");
+      ], style: "fill:$chipEdge;");
+    }
+
+    {
+      var w = projects.clientWidth;
+      var h = projects.clientHeight;
+      poly(e, [
+        0 + 0.5, 8 + 0.3,
+        8 + 0.3, 0.5,
+        15 * 8 - 0.3, 0 + 0.5,
+        20 * 8 - 0.3, 8 * 5 + 0.5,
+        w - 20 * 8 + 0.3, 8 * 5 + 0.5,
+        w - 15 * 8 + 0.3, 0 + 0.5,
+        w - 8 - 0.5 , 0.5,
+        w - 0.3, 8 + 0.5,
+        w - 0.5, h - 16 - 0.3,
+        w - 8 - 0.3, h - 8 - 0.5,
+        w - 15 * 8 + 0.3, h - 8 - 0.5,
+        w - 20 * 8 + 0.3, h - 8 * 6 - 0.5,
+        20 * 8 - 0.3, h - 8 * 6 - 0.5,
+        15 * 8 - 0.3, h - 8 - 0.5,
+        8 + 0.3, h - 8 - 0.5,
+        0 + 0.5, h - 16 + 0.3,
+      ], style: "fill:$chipPrimary;");
     }
 
     {
@@ -527,8 +590,7 @@ void startLayout() {
         0, h - 8,
       ];
 
-      poly(e, p, style: "stroke:rgba(128, 156, 186, 0.1);stroke-width:1.5;", transform: "translate(${projectsContent.offsetLeft},${projectsContent.offsetTop})");
-      poly(e, p, style: "fill:#303d4f", transform: "translate(${projectsContent.offsetLeft},${projectsContent.offsetTop})");
+      poly(e, p, style: "fill:$chipInner", transform: "translate(${projectsContent.offsetLeft},${projectsContent.offsetTop})");
     }
 
     projectsBg.children = [e];
