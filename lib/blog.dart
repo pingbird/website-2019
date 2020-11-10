@@ -154,7 +154,7 @@ void startBlog() async {
           transTo = null;
         });
 
-        for (var p in postElms) if (p != c) p.style.opacity = "0.5";
+        for (var p in postElms) if (p != c) p.style.opacity = "0";
         for (var p in postBgs) p.style.opacity = "0";
       });
 
