@@ -21,7 +21,7 @@ class GLShader {
     gl.compileShader(fragShader);
 
     if (!gl.getShaderParameter(fragShader, WebGL.COMPILE_STATUS)) {
-      window.console.error("Errror in fragment shader");
+      window.console.error("Error in fragment shader");
       throw gl.getShaderInfoLog(fragShader);
     }
 
@@ -30,7 +30,7 @@ class GLShader {
     gl.compileShader(vertShader);
 
     if (!gl.getShaderParameter(vertShader, WebGL.COMPILE_STATUS)) {
-      window.console.error("Errror in vertex shader");
+      window.console.error("Error in vertex shader");
       throw gl.getShaderInfoLog(vertShader);
     }
 
