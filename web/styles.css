@@ -78,7 +78,7 @@ body {
   cursor: pointer;
   padding: 6px;
   background-color: rgba(255, 255, 255, 0);
-  transition: all ease 0.25s;
+  /* transition: all ease 0.25s; */
   border-radius: 8px;
 }
 
@@ -91,7 +91,7 @@ body {
 }
 
 #tst-btn-row .tst-btn:active {
-  transition: all ease 0.5s;
+  /* transition: all ease 0.5s; */
 }
 
 #header #tst-btn-row .btn-outer:not(:first-child) {
@@ -194,7 +194,7 @@ body {
   font-size: 18px;
 
   opacity: 0;
-  transition: all 0.5s ease;
+  /* transition: all 0.5s ease; */
 
   display: flex;
   flex-direction: column;
@@ -246,7 +246,7 @@ body {
   width: 345px;
   height: 384px;
   margin: 8px;
-  transition: 0.1s all ease;
+  /* transition: 0.1s all ease; */
   border-radius: 8px;
   position: relative;
   display: flex;
@@ -263,7 +263,7 @@ body {
   bottom: 0;
   z-index: 1;
   border-radius: 8px;
-  transition: 0.25s all ease;
+  /* transition: 0.25s all ease; */
   pointer-events: none;
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
@@ -275,7 +275,7 @@ body {
   height: 200px;
   width: 100%;
   border-radius: 8px 8px 0 0;
-  transition: 0.1s all ease;
+  /* transition: 0.1s all ease; */
   display: flex;
   flex-direction: column;
 }
@@ -302,7 +302,7 @@ body {
 }
 
 #projects .btn {
-  transition: all 0.25s ease;
+  /* transition: all 0.25s ease; */
   font-weight: normal;
   color: #fff;
   border-radius: 4px;
@@ -329,7 +329,7 @@ body {
   bottom: 0;
   z-index: 1;
   border-radius: 4px;
-  transition: 0.25s all ease;
+  /* transition: 0.25s all ease; */
   border: 1px rgba(255,255,255,0.06) solid;
   pointer-events: none;
 }
@@ -409,7 +409,7 @@ body {
   margin-left: 16px;
   margin-right: 16px;
   border-radius: 4px;
-  transition: all ease 0.25s;
+  /* transition: all ease 0.25s; */
   cursor: pointer;
   border: 2px solid rgba(255, 255, 255, 0);
   font-weight: normal;
@@ -418,24 +418,24 @@ body {
 #links-content .link-row:hover {
   background-color: #41454c;
   border: 2px solid rgba(255, 255, 255, 0.0);
-  transition: all ease 0.25s;
+  /* transition: all ease 0.25s; */
 }
 
 #links-content .link-row:active {
   background-color: #41454c;
-  transition: all ease 0.5s;
+  /* transition: all ease 0.5s; */
 }
 
 #links-content .link-icon {
   width: 24px;
   height: 24px;
   margin-right: 16px;
-  transition: all ease 0.2s;
+  /* transition: all ease 0.2s; */
 }
 
 #links-content .link-row:hover .link-icon {
   margin-right: 16px;
-  transition: all ease 0.2s;
+  /* transition: all ease 0.2s; */
 }
 
 #links-content .link-separator {
@@ -450,7 +450,7 @@ body {
 }
 
 .blog-post {
-  transition: all ease 0.2s;
+  /* transition: all ease 0.2s; */
   cursor: pointer;
 
   display: flex;
@@ -469,13 +469,13 @@ body {
 }
 
 .blog-post:hover {
-  transition: all ease 0.2s;
+  /* transition: all ease 0.2s; */
   background-color: rgba(165, 185, 207, 0.1);
   border-color: rgba(255, 255, 255, 0.05);
 }
 
 .blog-post:active {
-  transition: all ease 0.2s;
+  /* transition: all ease 0.2s; */
   background-color: rgba(165, 185, 207, 0.05);
 }
 
@@ -492,7 +492,7 @@ body {
   right: 0;
   z-index: -2;
   background-color: #36393f;
-  transition: all ease 0.5s;
+  /* transition: all ease 0.5s; */
   pointer-events: none;
 }
 
@@ -533,7 +533,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  transition: all 0.2s ease;
+  /* transition: all 0.2s ease; */
   background: rgba(255, 255, 255, 0.2);
   border-radius: 4px;
 }

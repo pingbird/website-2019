@@ -26,9 +26,9 @@ class SceneViewer extends Viewer {
     app = GLApp(e);
     await app.init();
 
-    var ctx = app.viewport;
+    var vp = app.viewport;
 
-    var previewShader = await ctx.loadShader("/assets/gl/plainColor/vert.glsl", "/assets/gl/plainColor/frag.glsl");
+    var previewShader = await vp.loadShader("/assets/gl/plainColor/vert.glsl", "/assets/gl/plainColor/frag.glsl");
 
     for (var m in scene.models) {
       var uniforms = <String, dynamic>{};
@@ -38,19 +38,21 @@ class SceneViewer extends Viewer {
         uniforms: uniforms,
       );
 
-      unawaited(ctx.loadShader(m.vertShader, m.fragShader).then((s) async {
-        for (var k in m.uniforms.keys) {
-          var v = m.uniforms[k];
-          if (v is String) {
-            uniforms[k] = await ctx.loadTexture(v);
-          } else uniforms[k] = v;
-        }
-        mat.shader = s;
-      }));
+      if (m.vertShader != null && m.fragShader != null) {
+        unawaited(vp.loadShader(m.vertShader, m.fragShader).then((s) async {
+          for (var k in m.uniforms.keys) {
+            var v = m.uniforms[k];
+            if (v is String) {
+              uniforms[k] = await vp.loadTexture(v);
+            } else uniforms[k] = v;
+          }
+          mat.shader = s;
+        }));
+      }
 
       await app.addObject(
         MeshGLObject(
-          await ctx.loadObj(m.obj),
+          await vp.loadObj(m.obj),
           mat,
         )
           ..pos = m.pos
@@ -59,7 +61,7 @@ class SceneViewer extends Viewer {
       );
     }
 
-    await app.addObject(GLFilter(ctx, await ctx.loadShader(
+    await app.addObject(GLFilter(vp, await vp.loadShader(
       "/assets/gl/tonemap/vert.glsl",
       "/assets/gl/tonemap/frag.glsl",
     )));
@@ -78,9 +80,9 @@ class SceneViewer extends Viewer {
     var down = false;
 
     void updateCamera() {
-      ctx.cameraAng = Vector3(0.0, cameraPitch, cameraYaw);
-      ctx.cameraPos = Vector3(0, 0, -cameraDist);
-      print(ctx.cameraAng);
+      vp.cameraAng = Vector3(0.0, cameraPitch, cameraYaw);
+      vp.cameraPos = Vector3(0, 0, -cameraDist);
+      print(vp.cameraAng);
     }
 
     e.onMouseDown.listen((e) {

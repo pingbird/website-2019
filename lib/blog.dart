@@ -71,7 +71,7 @@ Future<String> _timeoutRequest(String url,  {
 void startBlog() async {
   try {
     var res = await _timeoutRequest("https://blog.tst.sh/rss/", timeout: 5.0);
-    var doc = xml.parse(res);
+    var doc = xml.XmlDocument.parse(res);
 
     xml.XmlElement find(xml.XmlNode p, String name) {
       for (var c in p.children) {

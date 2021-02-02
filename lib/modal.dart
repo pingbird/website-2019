@@ -75,7 +75,6 @@ List<double> _doubles(dynamic data, int count) {
 }
 
 Vector3 _vector3(dynamic data) {
-  print("eee");
   var o = Vector3.fromFloat64List(_doubles(data, 3));
   print(o);
   return o;

@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:crypto/crypto.dart';
 import 'package:mime/mime.dart';
+import 'package:pedantic/pedantic.dart';
 import 'package:tuple/tuple.dart';
 import 'package:uuid/uuid.dart';
 
@@ -54,10 +55,10 @@ Future<List<int>> convert(List<String> args, [List<int> data]) async {
 
   if (data != null) {
     proc.stdin.add(data);
-    proc.stdin.close();
+    await proc.stdin.close();
   }
 
-  stderr.addStream(proc.stderr);
+  unawaited(stderr.addStream(proc.stderr));
   return proc.stdout.expand((e) => e).toList();
 }
 

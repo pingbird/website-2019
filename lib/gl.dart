@@ -5,12 +5,8 @@ import 'dart:math';
 import 'dart:typed_data';
 import 'dart:web_gl';
 
-import 'package:w2019/sprite.dart';
-import 'package:meta/meta.dart';
 import 'package:tuple/tuple.dart';
 import 'package:vector_math/vector_math.dart';
-import 'package:pedantic/pedantic.dart';
-import 'package:meta/meta.dart';
 
 class GLShader {
   GLShader(GLViewport ctx, String vertSrc, String fragSrc) {
@@ -104,7 +100,7 @@ class GLViewport {
     glJs = app.glJs;
   }
 
-  void dispose() {}
+  void destroy() {}
 
   void draw() {
     gl.viewport(0, 0, width, height);
@@ -150,7 +146,7 @@ class GLViewport {
     return shader;
   }
 
-  Map<Tuple5<String, int, int, int, int>, Texture> imageCache = {};
+  Map<Tuple5<String, int, int, int, int>, Texture> textureCache = {};
 
   FutureOr<Texture> loadTexture(String url, {
     int level = 0,
@@ -159,7 +155,7 @@ class GLViewport {
     int srcType = WebGL.UNSIGNED_BYTE,
   }) async {
     var key = Tuple5(url, level, internalFormat, srcFormat, srcType);
-    if (imageCache.containsKey(key)) return imageCache[key];
+    if (textureCache.containsKey(key)) return textureCache[key];
 
     var texture = gl.createTexture();
 
@@ -179,7 +175,7 @@ class GLViewport {
       gl.texParameteri(WebGL.TEXTURE_2D, WebGL.TEXTURE_MIN_FILTER, WebGL.LINEAR);
     }
 
-    imageCache[key] = texture;
+    textureCache[key] = texture;
     return texture;
   }
 }
@@ -244,7 +240,7 @@ class GLApp {
     return ext;
   }
 
-  Future init() async {
+  Future<void> init() async {
     getWebGLExt("OES_texture_half_float");
     getWebGLExt("OES_texture_half_float_linear");
     getWebGLExt("WEBGL_depth_texture");
@@ -277,7 +273,7 @@ class GLApp {
     updateSize();
   }
 
-  Future addObject(GLObject obj) async {
+  Future<void> addObject(GLObject obj) async {
     obj.ctx = viewport;
     await obj.init();
     obj.initialized;
@@ -338,8 +334,8 @@ class GLApp {
 
       var a = framebufferTex;
       var b = framebufferTex2;
-      for (var filt in filters) {
-        if (filt == filters.last) {
+      for (final filter in filters) {
+        if (filter == filters.last) {
           gl.bindFramebuffer(WebGL.FRAMEBUFFER, null);
           gl.viewport(0, 0, canvas.width, canvas.height);
           gl.clearColor(1, 0.4, 1, 1);
@@ -349,8 +345,8 @@ class GLApp {
           gl.framebufferTexture2D(WebGL.FRAMEBUFFER, WebGL.DEPTH_ATTACHMENT, WebGL.TEXTURE_2D,depthTex, 0);
         }
 
-        filt.texture = a;
-        filt.draw();
+        filter.texture = a;
+        filter.draw();
 
         var t = b;
         b = a;
@@ -375,5 +371,6 @@ class GLApp {
     drawing = false;
     canvas = null;
     resizeObserver.disconnect();
+    viewport.destroy();
   }
 }
