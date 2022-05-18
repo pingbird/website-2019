@@ -13,13 +13,12 @@ class GalleryMeta {
 
   GalleryMeta(this.width, this.height, this.thumb, this.color);
 
-  factory GalleryMeta.fromJson(data) =>
-    GalleryMeta(
-      data["width"],
-      data["height"],
-      data["thumb"],
-      data["color"] ?? "#404040",
-    );
+  factory GalleryMeta.fromJson(data) => GalleryMeta(
+        data["width"],
+        data["height"],
+        data["thumb"],
+        data["color"] ?? "#404040",
+      );
 }
 
 abstract class GalleryContent {
@@ -44,12 +43,11 @@ class GalleryImage extends GalleryContent {
   String src;
   String mime;
 
-  factory GalleryImage.fromJson(data) =>
-    GalleryImage(
-      data["src"],
-      data["mime"],
-      GalleryMeta.fromJson(data),
-    );
+  factory GalleryImage.fromJson(data) => GalleryImage(
+        data["src"],
+        data["mime"],
+        GalleryMeta.fromJson(data),
+      );
 }
 
 class GalleryScene extends GalleryContent {
@@ -58,12 +56,11 @@ class GalleryScene extends GalleryContent {
 
   GalleryScene(this.cubemap, this.models, GalleryMeta meta) : super(meta);
 
-  factory GalleryScene.fromJson(data) =>
-    GalleryScene(
-      data["cubemap"],
-      (data["models"] as List).map((e) => GalleryModel.fromJson(e)).toList(),
-      GalleryMeta.fromJson(data),
-    );
+  factory GalleryScene.fromJson(data) => GalleryScene(
+        data["cubemap"],
+        (data["models"] as List).map((e) => GalleryModel.fromJson(e)).toList(),
+        GalleryMeta.fromJson(data),
+      );
 }
 
 List<double> _doubles(dynamic data, int count) {
@@ -107,13 +104,10 @@ class GalleryModel {
   String vertShader;
   Map<String, dynamic> uniforms;
 
-  GalleryModel(
-    this.obj, this.pos, this.ang, this.scale,
-    this.fragShader, this.vertShader, this.uniforms
-  );
+  GalleryModel(this.obj, this.pos, this.ang, this.scale, this.fragShader,
+      this.vertShader, this.uniforms);
 
-  factory GalleryModel.fromJson(data) =>
-    GalleryModel(
+  factory GalleryModel.fromJson(data) => GalleryModel(
       data["obj"],
       _vector3(data["pos"]),
       _vector3(data["ang"]),
@@ -121,8 +115,7 @@ class GalleryModel {
       data["fragShader"],
       data["vertShader"],
       (data["uniforms"] as Map<String, dynamic>)
-        .map((k, v) => MapEntry(k, uniformFromJson(v)))
-    );
+          .map((k, v) => MapEntry(k, uniformFromJson(v))));
 }
 
 class Modal {
@@ -171,8 +164,7 @@ class Modal {
       ..id = "modal"
       ..onClick.listen((_) => close());
 
-    div = DivElement()
-      ..id = "modal-content";
+    div = DivElement()..id = "modal-content";
 
     modal.children.add(div);
     parent.children.add(modal);

@@ -8,10 +8,10 @@ class SpriteGLObject extends GLObject {
   List<String> vertAssets;
   List<String> fragAssets;
 
-  SpriteGLObject(this.texture, {this.matrix,
-    this.vertAssets = const ["/assets/gl/sprite/vert.glsl"],
-    this.fragAssets = const ["/assets/gl/sprite/frag.glsl"]
-  }) {
+  SpriteGLObject(this.texture,
+      {this.matrix,
+      this.vertAssets = const ["/assets/gl/sprite/vert.glsl"],
+      this.fragAssets = const ["/assets/gl/sprite/frag.glsl"]}) {
     matrix ??= Matrix4.identity();
   }
 
@@ -29,7 +29,8 @@ class SpriteGLObject extends GLObject {
     gl.bindTexture(WebGL.TEXTURE_2D, texture);
     gl.useProgram(shader.program);
     gl.bindBuffer(WebGL.ARRAY_BUFFER, ctx.app.squareBuf);
-    gl.vertexAttribPointer(shader.attributes["aPos"], 2, WebGL.FLOAT, false, 0, 0);
+    gl.vertexAttribPointer(
+        shader.attributes["aPos"], 2, WebGL.FLOAT, false, 0, 0);
     gl.uniformMatrix4fv(shader.uniforms['uMatrix'], false, matrix.storage);
     gl.uniform1i(shader.uniforms["uTex"], 0);
     gl.drawArrays(WebGL.TRIANGLES, 0, 6);

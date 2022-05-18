@@ -2,7 +2,8 @@ import 'dart:async';
 import 'dart:html';
 import 'package:xml/xml.dart' as xml;
 
-Future<String> _timeoutRequest(String url,  {
+Future<String> _timeoutRequest(
+  String url, {
   String method,
   bool withCredentials,
   String responseType,
@@ -101,31 +102,35 @@ void startBlog() async {
     DateTime resetLast;
 
     var bgMainDiv = querySelector("#blog-posts-bg-main") as DivElement;
-    var bgMain = (querySelector("#blog-posts-bg-main").querySelector(".blog-posts-bg-inner") as DivElement);
-    var bgBack = (querySelector("#blog-posts-bg-back").querySelector(".blog-posts-bg-inner") as DivElement);
+    var bgMain = (querySelector("#blog-posts-bg-main")
+        .querySelector(".blog-posts-bg-inner") as DivElement);
+    var bgBack = (querySelector("#blog-posts-bg-back")
+        .querySelector(".blog-posts-bg-inner") as DivElement);
 
     int i = 0;
     for (var post in posts.take(6)) {
       var title = cdata(find(post, "title"));
       var categories = findAll(post, "category").map(cdata).toSet();
-      var banner = find(post, "media:content").attributes.firstWhere((e) => e.name.toString() == "url").value;
+      var banner = find(post, "media:content")
+          .attributes
+          .firstWhere((e) => e.name.toString() == "url")
+          .value;
       var href = find(post, "link").text;
 
       var c = AnchorElement()
         ..href = href
         ..classes.add("blog-post")
         ..children.addAll([
-          DivElement()
-            ..classes.add("blog-post-pin"),
+          DivElement()..classes.add("blog-post-pin"),
           DivElement()
             ..classes.add("blog-post-title")
             ..text = title,
-          DivElement()
-            ..classes.add("blog-post-text"),
+          DivElement()..classes.add("blog-post-text"),
         ]);
 
       c.onMouseEnter.listen((e) {
-        if (resetTimer != null && DateTime.now().difference(resetLast).inMilliseconds > 50) {
+        if (resetTimer != null &&
+            DateTime.now().difference(resetLast).inMilliseconds > 50) {
           bgBack.style.backgroundImage = "none";
         }
 
@@ -180,12 +185,12 @@ void startBlog() async {
 
       var d = DivElement()
         ..classes.add("blog-posts-bg")
-        ..style.clipPath = "polygon(0 ${i * 56}px, 100% ${i * 56}px, 100% ${(i + 1) * 56}px, 0 ${(i + 1) * 56}px)"
+        ..style.clipPath =
+            "polygon(0 ${i * 56}px, 100% ${i * 56}px, 100% ${(i + 1) * 56}px, 0 ${(i + 1) * 56}px)"
         ..style.zIndex = "-1"
         ..children.add(DivElement()
           ..classes.add("blog-posts-bg-inner")
-          ..style.backgroundImage='url("${banner}")'
-        );
+          ..style.backgroundImage = 'url("${banner}")');
 
       postBgs.add(d);
       postsContent.children.add(d);

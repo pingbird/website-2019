@@ -11,10 +11,7 @@ class ImageViewer extends Viewer {
     if (img.mime.split("/")[0] == "video") {
       var e = VideoElement()
         ..id = "modal-image"
-        ..children.add(
-            SourceElement()
-              ..src = img.src
-        )
+        ..children.add(SourceElement()..src = img.src)
         ..setAttribute("autoplay", "true")
         ..setAttribute("controls", "true")
         ..style.backgroundColor = img.meta.color;

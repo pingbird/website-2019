@@ -28,10 +28,10 @@ void startLayout() {
   var projectsBg = querySelector("#projects-bg");
   var projectsContent = querySelector("#projects-content");
 
-
   int shrink = 0;
 
-  void poly(Element parent, List<num> points, {String style, String transform, String opacity}) {
+  void poly(Element parent, List<num> points,
+      {String style, String transform, String opacity}) {
     var p = PolygonElement();
     var pts = StringBuffer();
     for (int i = 0; i < points.length; i += 2) {
@@ -59,25 +59,22 @@ void startLayout() {
 
     var defs = SvgElement.tag("defs");
 
-    defs.children.add(
-        SvgElement.tag("linearGradient")
-          ..attributes["id"] = "blue"
-          ..attributes["x1"] = "0%"
-          ..attributes["x2"] = "0%"
-          ..attributes["x2"] = "100%"
-          ..attributes["y2"] = "100%"
-          ..children.addAll([
-            SvgElement.tag("stop")
-              ..attributes["offset"] = "0%"
-              ..style.setProperty("stop-color", "#2a70b3")
-              ..style.setProperty("stop-opacity", "1"),
-
-            SvgElement.tag("stop")
-              ..attributes["offset"] = "100%"
-              ..style.setProperty("stop-color", "#2d8dd7")
-              ..style.setProperty("stop-opacity", "1"),
-          ])
-    );
+    defs.children.add(SvgElement.tag("linearGradient")
+      ..attributes["id"] = "blue"
+      ..attributes["x1"] = "0%"
+      ..attributes["x2"] = "0%"
+      ..attributes["x2"] = "100%"
+      ..attributes["y2"] = "100%"
+      ..children.addAll([
+        SvgElement.tag("stop")
+          ..attributes["offset"] = "0%"
+          ..style.setProperty("stop-color", "#2a70b3")
+          ..style.setProperty("stop-opacity", "1"),
+        SvgElement.tag("stop")
+          ..attributes["offset"] = "100%"
+          ..style.setProperty("stop-color", "#2d8dd7")
+          ..style.setProperty("stop-opacity", "1"),
+      ]));
 
     e.children.add(defs);
 
@@ -86,54 +83,96 @@ void startLayout() {
     if (showTitleBg) {
       var w = header.clientWidth;
       var h = header.clientHeight;
-      poly(e, [
-        0, 8,
-        8, 0,
-        w - 8, 0,
-        w, 8,
-        w, h - 6 * 8,
-        w - 8, h - 5 * 8,
-        if (shrink < 1) ...[
-          w - 31 * 8, h - 5 * 8,
-          w - 36 * 8, h,
-          36 * 8, h,
-          31 * 8, h - 5 * 8,
-        ],
-        8, h - 5 * 8,
-        0, h - 6 * 8,
-      ], style: "fill:$chipUnder");
+      poly(
+          e,
+          [
+            0,
+            8,
+            8,
+            0,
+            w - 8,
+            0,
+            w,
+            8,
+            w,
+            h - 6 * 8,
+            w - 8,
+            h - 5 * 8,
+            if (shrink < 1) ...[
+              w - 31 * 8,
+              h - 5 * 8,
+              w - 36 * 8,
+              h,
+              36 * 8,
+              h,
+              31 * 8,
+              h - 5 * 8,
+            ],
+            8,
+            h - 5 * 8,
+            0,
+            h - 6 * 8,
+          ],
+          style: "fill:$chipUnder");
 
-      poly(e, [
-        0, 8,
-        8, 0,
-        w - 8, 0,
-        w, 8,
-        w, h - 7 * 8,
-        w - 8, h - 6 * 8,
-        if (shrink < 1) ...[
-          w - 31 * 8, h - 6 * 8,
-          w - 36 * 8, h - 8,
-          36 * 8, h - 8,
-          31 * 8, h - 6 * 8,
-        ],
-        8, h - 6 * 8,
-        0, h - 7 * 8,
-      ], style: "fill:$chipPrimary");
+      poly(
+          e,
+          [
+            0,
+            8,
+            8,
+            0,
+            w - 8,
+            0,
+            w,
+            8,
+            w,
+            h - 7 * 8,
+            w - 8,
+            h - 6 * 8,
+            if (shrink < 1) ...[
+              w - 31 * 8,
+              h - 6 * 8,
+              w - 36 * 8,
+              h - 8,
+              36 * 8,
+              h - 8,
+              31 * 8,
+              h - 6 * 8,
+            ],
+            8,
+            h - 6 * 8,
+            0,
+            h - 7 * 8,
+          ],
+          style: "fill:$chipPrimary");
     }
 
     if (showTitleBg) {
       var w = tstText.clientWidth;
       var h = tstText.clientHeight;
-      poly(e, [
-        0, 8,
-        8, 0,
-        w - 8, 0,
-        w, 8,
-        w, h - 8,
-        w - 8, h,
-        8, h,
-        0, h - 8,
-      ], style: "fill:url(#blue)", transform: "translate(${tstText.offsetLeft},${tstText.offsetTop})");
+      poly(
+          e,
+          [
+            0,
+            8,
+            8,
+            0,
+            w - 8,
+            0,
+            w,
+            8,
+            w,
+            h - 8,
+            w - 8,
+            h,
+            8,
+            h,
+            0,
+            h - 8,
+          ],
+          style: "fill:url(#blue)",
+          transform: "translate(${tstText.offsetLeft},${tstText.offsetTop})");
     }
 
     headerBg.children = [e];
@@ -142,19 +181,24 @@ void startLayout() {
   void renderContent() {
     var e = SvgSvgElement();
 
-
     var btns = querySelectorAll("#tst-btn-row .tst-btn");
     const st = 8 / 6;
 
     {
       List<num> head(int ox, int oy) => [
-        18 * st + ox, oy + 3 * st,
-        16 * st + ox, oy + st,
-        16 * st + ox, oy,
-        26 * st + ox, oy,
-        26 * st + ox, oy + st,
-        24 * st + ox, oy + 3 * st,
-      ];
+            18 * st + ox,
+            oy + 3 * st,
+            16 * st + ox,
+            oy + st,
+            16 * st + ox,
+            oy,
+            26 * st + ox,
+            oy,
+            26 * st + ox,
+            oy + st,
+            24 * st + ox,
+            oy + 3 * st,
+          ];
 
       var w = content.clientWidth;
       var h = content.clientHeight;
@@ -163,71 +207,133 @@ void startLayout() {
 
       var ch = os.y + 8 * 17;
 
-      poly(e, [
-        ...head(os.x, os.y + 56),
-        24 * st + os.x, ch + 8 * -5 + st * -2,
-        26 * st + os.x, ch + 8 * -5,
-        os.x + st * 20 + 8 * 18, ch + 8 * -5,
-        os.x + st * 24 + 8 * 18, ch + 8 * -5 + st * 4,
-        os.x + st * 24 + 8 * 18, h - 8,
-        os.x + st * 18 + 8 * 18, h - 8,
-        os.x + st * 18 + 8 * 18, ch + 8 * -4 + st * 2,
-        os.x + st * 16 + 8 * 18, ch - 8 * 4,
-        22 * st + os.x, ch + 8 * -4,
-        18 * st + os.x, ch + 8 * -4 + st * -4,
-      ], style: "fill:#fff", opacity: "0.2");
+      poly(
+          e,
+          [
+            ...head(os.x, os.y + 56),
+            24 * st + os.x,
+            ch + 8 * -5 + st * -2,
+            26 * st + os.x,
+            ch + 8 * -5,
+            os.x + st * 20 + 8 * 18,
+            ch + 8 * -5,
+            os.x + st * 24 + 8 * 18,
+            ch + 8 * -5 + st * 4,
+            os.x + st * 24 + 8 * 18,
+            h - 8,
+            os.x + st * 18 + 8 * 18,
+            h - 8,
+            os.x + st * 18 + 8 * 18,
+            ch + 8 * -4 + st * 2,
+            os.x + st * 16 + 8 * 18,
+            ch - 8 * 4,
+            22 * st + os.x,
+            ch + 8 * -4,
+            18 * st + os.x,
+            ch + 8 * -4 + st * -4,
+          ],
+          style: "fill:#fff",
+          opacity: "0.2");
 
       os = btns[1].documentOffset - content.documentOffset;
-      poly(e, [
-        ...head(os.x, os.y + 56),
-        24 * st + os.x, ch + 8 * -7 + st * -2,
-        26 * st + os.x, ch + 8 * -7,
-        os.x + st * 19 + 8 * 8, ch - 8 * 7,
-        os.x + st * 24 + 8 * 9, ch + 8 * -6 + st * 5,
-        os.x + st * 24 + 8 * 9, h - 8,
-        os.x + st * 18 + 8 * 9, h - 8,
-        os.x + st * 18 + 8 * 9, ch + 8 * -5 + st * 2,
-        os.x + st * 16 + 8 * 8, ch - 8 * 6,
-        22 * st + os.x, ch + 8 * -6,
-        18 * st + os.x, ch + 8 * -6 + st * -4,
-      ], style: "fill:#fff", opacity: "0.2");
+      poly(
+          e,
+          [
+            ...head(os.x, os.y + 56),
+            24 * st + os.x,
+            ch + 8 * -7 + st * -2,
+            26 * st + os.x,
+            ch + 8 * -7,
+            os.x + st * 19 + 8 * 8,
+            ch - 8 * 7,
+            os.x + st * 24 + 8 * 9,
+            ch + 8 * -6 + st * 5,
+            os.x + st * 24 + 8 * 9,
+            h - 8,
+            os.x + st * 18 + 8 * 9,
+            h - 8,
+            os.x + st * 18 + 8 * 9,
+            ch + 8 * -5 + st * 2,
+            os.x + st * 16 + 8 * 8,
+            ch - 8 * 6,
+            22 * st + os.x,
+            ch + 8 * -6,
+            18 * st + os.x,
+            ch + 8 * -6 + st * -4,
+          ],
+          style: "fill:#fff",
+          opacity: "0.2");
 
       os = btns[2].documentOffset - content.documentOffset;
-      poly(e, [
-        ...head(os.x, os.y + 56),
-        os.x + st * 24, h - 8,
-        os.x + st * 18, h - 8,
-      ], style: "fill:#fff", opacity: "0.2");
+      poly(
+          e,
+          [
+            ...head(os.x, os.y + 56),
+            os.x + st * 24,
+            h - 8,
+            os.x + st * 18,
+            h - 8,
+          ],
+          style: "fill:#fff",
+          opacity: "0.2");
 
       os = btns[3].documentOffset - content.documentOffset;
-      poly(e, [
-        ...head(os.x, os.y + 56),
-        24 * st + os.x, ch + 8 * -6 + st * -4,
-        20 * st + os.x, ch + 8 * -6,
-        os.x + st * 26 - 8 * 8, ch - 8 * 6,
-        os.x + st * 24 - 8 * 9, ch + 8 * -5 + st * 2,
-        os.x + st * 24 - 8 * 9, h - 8,
-        os.x + st * 18 - 8 * 9, h - 8,
-        os.x + st * 18 - 8 * 9, ch + 8 * -6 + st * 5,
-        os.x + st * 23 - 8 * 8, ch - 8 * 7,
-        16 * st + os.x, ch - 8 * 7,
-        18 * st + os.x, ch - 8 * 7 + st * -2,
-      ], style: "fill:#fff", opacity: "0.2");
+      poly(
+          e,
+          [
+            ...head(os.x, os.y + 56),
+            24 * st + os.x,
+            ch + 8 * -6 + st * -4,
+            20 * st + os.x,
+            ch + 8 * -6,
+            os.x + st * 26 - 8 * 8,
+            ch - 8 * 6,
+            os.x + st * 24 - 8 * 9,
+            ch + 8 * -5 + st * 2,
+            os.x + st * 24 - 8 * 9,
+            h - 8,
+            os.x + st * 18 - 8 * 9,
+            h - 8,
+            os.x + st * 18 - 8 * 9,
+            ch + 8 * -6 + st * 5,
+            os.x + st * 23 - 8 * 8,
+            ch - 8 * 7,
+            16 * st + os.x,
+            ch - 8 * 7,
+            18 * st + os.x,
+            ch - 8 * 7 + st * -2,
+          ],
+          style: "fill:#fff",
+          opacity: "0.2");
 
       os = btns[4].documentOffset - content.documentOffset;
-      poly(e, [
-        ...head(os.x, os.y + 56),
-        24 * st + os.x, ch + 8 * -4 + st * -4,
-        20 * st + os.x, ch + 8 * -4,
-        os.x + st * 26 - 8 * 18, ch - 8 * 4,
-        os.x + st * 24 - 8 * 18, ch + 8 * -4 + st * 2,
-        os.x + st * 24 - 8 * 18, h - 8,
-        os.x + st * 18 - 8 * 18, h - 8,
-        os.x + st * 18 - 8 * 18, ch + 8 * -5 + st * 4,
-        os.x + st * 22 - 8 * 18, ch - 8 * 5,
-        16 * st + os.x, ch - 8 * 5,
-        18 * st + os.x, ch - 8 * 5 + st * -2,
-      ], style: "fill:#fff", opacity: "0.2");
+      poly(
+          e,
+          [
+            ...head(os.x, os.y + 56),
+            24 * st + os.x,
+            ch + 8 * -4 + st * -4,
+            20 * st + os.x,
+            ch + 8 * -4,
+            os.x + st * 26 - 8 * 18,
+            ch - 8 * 4,
+            os.x + st * 24 - 8 * 18,
+            ch + 8 * -4 + st * 2,
+            os.x + st * 24 - 8 * 18,
+            h - 8,
+            os.x + st * 18 - 8 * 18,
+            h - 8,
+            os.x + st * 18 - 8 * 18,
+            ch + 8 * -5 + st * 4,
+            os.x + st * 22 - 8 * 18,
+            ch - 8 * 5,
+            16 * st + os.x,
+            ch - 8 * 5,
+            18 * st + os.x,
+            ch - 8 * 5 + st * -2,
+          ],
+          style: "fill:#fff",
+          opacity: "0.2");
     }
 
     contentBg.children = [e];
@@ -238,25 +344,22 @@ void startLayout() {
 
     var defs = SvgElement.tag("defs");
 
-    defs.children.add(
-      SvgElement.tag("linearGradient")
-        ..attributes["id"] = "blue"
-        ..attributes["x1"] = "0%"
-        ..attributes["x2"] = "0%"
-        ..attributes["x2"] = "100%"
-        ..attributes["y2"] = "100%"
-        ..children.addAll([
-          SvgElement.tag("stop")
-            ..attributes["offset"] = "0%"
-            ..style.setProperty("stop-color", "#2a70b3")
-            ..style.setProperty("stop-opacity", "0.9"),
-
-          SvgElement.tag("stop")
-            ..attributes["offset"] = "100%"
-            ..style.setProperty("stop-color", "#3c82bc")
-            ..style.setProperty("stop-opacity", "0.9"),
-        ])
-    );
+    defs.children.add(SvgElement.tag("linearGradient")
+      ..attributes["id"] = "blue"
+      ..attributes["x1"] = "0%"
+      ..attributes["x2"] = "0%"
+      ..attributes["x2"] = "100%"
+      ..attributes["y2"] = "100%"
+      ..children.addAll([
+        SvgElement.tag("stop")
+          ..attributes["offset"] = "0%"
+          ..style.setProperty("stop-color", "#2a70b3")
+          ..style.setProperty("stop-opacity", "0.9"),
+        SvgElement.tag("stop")
+          ..attributes["offset"] = "100%"
+          ..style.setProperty("stop-color", "#3c82bc")
+          ..style.setProperty("stop-opacity", "0.9"),
+      ]));
 
     e.children.add(defs);
 
@@ -267,16 +370,24 @@ void startLayout() {
     var r = l + content.clientWidth;
 
     var p = [
-      0, 0,
-      w, 0,
-      w, if (shrink < 1) h - 5 * 8 else h,
+      0,
+      0,
+      w,
+      0,
+      w,
+      if (shrink < 1) h - 5 * 8 else h,
       if (shrink < 1) ...[
-        r - 32 * 8, h - 5 * 8,
-        r - 37 * 8, h,
-        l + 37 * 8, h,
-        l + 32 * 8, h - 5 * 8,
+        r - 32 * 8,
+        h - 5 * 8,
+        r - 37 * 8,
+        h,
+        l + 37 * 8,
+        h,
+        l + 32 * 8,
+        h - 5 * 8,
       ],
-      0, if (shrink < 1) h - 5 * 8 else h,
+      0,
+      if (shrink < 1) h - 5 * 8 else h,
     ];
 
     poly(e, p, style: "stroke:#2a70b3;stroke-width:1.5;");
@@ -291,69 +402,119 @@ void startLayout() {
     {
       var w = about.clientWidth;
       var h = about.clientHeight;
-      poly(e, [
-        0, 8,
-        8, 0,
-        30 * 8, 0,
-        35 * 8, 8 * 5,
-        w - 8, 8 * 5,
-        w, 8 * 6,
-        w, h - 8,
-        w - 8, h,
-        8, h,
-        0, h - 8,
-      ], style: "fill:$chipUnder");
+      poly(
+          e,
+          [
+            0,
+            8,
+            8,
+            0,
+            30 * 8,
+            0,
+            35 * 8,
+            8 * 5,
+            w - 8,
+            8 * 5,
+            w,
+            8 * 6,
+            w,
+            h - 8,
+            w - 8,
+            h,
+            8,
+            h,
+            0,
+            h - 8,
+          ],
+          style: "fill:$chipUnder");
     }
 
     {
       var w = about.clientWidth;
       var h = about.clientHeight;
-      poly(e, [
-        0, 8,
-        8, 0,
-        30 * 8, 0,
-        35 * 8, 8 * 5,
-        w - 8, 8 * 5,
-        w, 8 * 6,
-        w, h - 16,
-        w - 8, h - 8,
-        8, h - 8,
-        0, h - 16,
-      ], style: "fill:$chipEdge;");
+      poly(
+          e,
+          [
+            0,
+            8,
+            8,
+            0,
+            30 * 8,
+            0,
+            35 * 8,
+            8 * 5,
+            w - 8,
+            8 * 5,
+            w,
+            8 * 6,
+            w,
+            h - 16,
+            w - 8,
+            h - 8,
+            8,
+            h - 8,
+            0,
+            h - 16,
+          ],
+          style: "fill:$chipEdge;");
     }
 
     {
       var w = about.clientWidth;
       var h = about.clientHeight;
-      poly(e, [
-        0.5, 8,
-        8, 0.5,
-        30 * 8 - 0.3, 0.5,
-        35 * 8 - 0.3, 0.5 + 8 * 5,
-        w - 8 - 0.3, 0.5 + 8 * 5,
-        w - 0.5, 8 * 6 + 0.3,
-        w - 0.5, h - 16 - 0.3,
-        w - 8 - 0.3, h - 8 - 0.5,
-        8 + 0.3, h - 8 - 0.5,
-        0.5, h - 16 - 0.3,
-      ], style: "fill:$chipPrimary;");
+      poly(
+          e,
+          [
+            0.5,
+            8,
+            8,
+            0.5,
+            30 * 8 - 0.3,
+            0.5,
+            35 * 8 - 0.3,
+            0.5 + 8 * 5,
+            w - 8 - 0.3,
+            0.5 + 8 * 5,
+            w - 0.5,
+            8 * 6 + 0.3,
+            w - 0.5,
+            h - 16 - 0.3,
+            w - 8 - 0.3,
+            h - 8 - 0.5,
+            8 + 0.3,
+            h - 8 - 0.5,
+            0.5,
+            h - 16 - 0.3,
+          ],
+          style: "fill:$chipPrimary;");
     }
 
     {
       var w = aboutContent.clientWidth;
       var h = aboutContent.clientHeight;
       var p = [
-        0, 8,
-        8, 0,
-        w - 8, 0,
-        w, 8,
-        w, h - 8,
-        w - 8, h,
-        8, h,
-        0, h - 8,
+        0,
+        8,
+        8,
+        0,
+        w - 8,
+        0,
+        w,
+        8,
+        w,
+        h - 8,
+        w - 8,
+        h,
+        8,
+        h,
+        0,
+        h - 8,
       ];
 
-      poly(e, p, style: "fill:$chipInner;", transform: "translate(${aboutContent.offsetLeft},${aboutContent.offsetTop})");
+      poly(e, p,
+          style: "fill:$chipInner;",
+          transform:
+              "translate(${aboutContent.offsetLeft},${aboutContent.offsetTop})");
     }
 
     aboutBg.children = [e];
@@ -365,69 +526,119 @@ void startLayout() {
     {
       var w = links.clientWidth;
       var h = links.clientHeight;
-      poly(e, [
-        0, 8 * 6,
-        8, 8 * 5,
-        w - 35 * 8, 8 * 5,
-        w - 30 * 8, 0,
-        w - 8, 0,
-        w, 8,
-        w, h - 8,
-        w - 8, h,
-        8, h,
-        0, h - 8,
-      ], style: "fill:$chipUnder");
+      poly(
+          e,
+          [
+            0,
+            8 * 6,
+            8,
+            8 * 5,
+            w - 35 * 8,
+            8 * 5,
+            w - 30 * 8,
+            0,
+            w - 8,
+            0,
+            w,
+            8,
+            w,
+            h - 8,
+            w - 8,
+            h,
+            8,
+            h,
+            0,
+            h - 8,
+          ],
+          style: "fill:$chipUnder");
     }
 
     {
       var w = links.clientWidth;
       var h = links.clientHeight;
-      poly(e, [
-        0, 8 * 6,
-        8, 8 * 5,
-        w - 35 * 8, 8 * 5,
-        w - 30 * 8, 0,
-        w - 8, 0,
-        w, 8,
-        w, h - 16,
-        w - 8, h - 8,
-        8, h - 8,
-        0, h - 16,
-      ], style: "fill:$chipEdge");
+      poly(
+          e,
+          [
+            0,
+            8 * 6,
+            8,
+            8 * 5,
+            w - 35 * 8,
+            8 * 5,
+            w - 30 * 8,
+            0,
+            w - 8,
+            0,
+            w,
+            8,
+            w,
+            h - 16,
+            w - 8,
+            h - 8,
+            8,
+            h - 8,
+            0,
+            h - 16,
+          ],
+          style: "fill:$chipEdge");
     }
 
     {
       var w = links.clientWidth;
       var h = links.clientHeight;
-      poly(e, [
-        0.5, 8 * 6 + 0.3,
-        8 + 0.3, 8 * 5 + 0.5,
-        w - 35 * 8 + 0.3, 8 * 5 + 0.5,
-        w - 30 * 8 + 0.3, 0.5,
-        w - 8 - 0.3, 0.5,
-        w - 0.5, 8 + 0.3,
-        w - 0.5, h - 16 - 0.3,
-        w - 8 - 0.3, h - 8 - 0.5,
-        8 - 0.3, h - 8 - 0.5,
-        0.5, h - 16 - 0.3,
-      ], style: "fill:$chipPrimary");
+      poly(
+          e,
+          [
+            0.5,
+            8 * 6 + 0.3,
+            8 + 0.3,
+            8 * 5 + 0.5,
+            w - 35 * 8 + 0.3,
+            8 * 5 + 0.5,
+            w - 30 * 8 + 0.3,
+            0.5,
+            w - 8 - 0.3,
+            0.5,
+            w - 0.5,
+            8 + 0.3,
+            w - 0.5,
+            h - 16 - 0.3,
+            w - 8 - 0.3,
+            h - 8 - 0.5,
+            8 - 0.3,
+            h - 8 - 0.5,
+            0.5,
+            h - 16 - 0.3,
+          ],
+          style: "fill:$chipPrimary");
     }
 
     {
       var w = linksContent.clientWidth;
       var h = linksContent.clientHeight;
       var p = [
-        0, 8,
-        8, 0,
-        w - 8, 0,
-        w, 8,
-        w, h - 8,
-        w - 8, h,
-        8, h,
-        0, h - 8,
+        0,
+        8,
+        8,
+        0,
+        w - 8,
+        0,
+        w,
+        8,
+        w,
+        h - 8,
+        w - 8,
+        h,
+        8,
+        h,
+        0,
+        h - 8,
       ];
 
-      poly(e, p, style: "fill:$chipInner;", transform: "translate(${linksContent.offsetLeft},${linksContent.offsetTop})");
+      poly(e, p,
+          style: "fill:$chipInner;",
+          transform:
+              "translate(${linksContent.offsetLeft},${linksContent.offsetTop})");
     }
 
     linksBg.children = [e];
@@ -439,69 +650,107 @@ void startLayout() {
     {
       var w = posts.clientWidth;
       var h = posts.clientHeight;
-      poly(e, [
-        0, 8,
-        8, 0,
-        30 * 8, 0,
-        35 * 8, 8 * 5,
-        w - 8, 8 * 5,
-        w, 8 * 6,
-        w, h - 8,
-        w - 8, h,
-        8, h,
-        0, h - 8,
-      ], style: "fill:$chipUnder");
+      poly(
+          e,
+          [
+            0,
+            8,
+            8,
+            0,
+            30 * 8,
+            0,
+            35 * 8,
+            8 * 5,
+            w - 8,
+            8 * 5,
+            w,
+            8 * 6,
+            w,
+            h - 8,
+            w - 8,
+            h,
+            8,
+            h,
+            0,
+            h - 8,
+          ],
+          style: "fill:$chipUnder");
     }
 
     {
       var w = posts.clientWidth;
       var h = posts.clientHeight;
-      poly(e, [
-        0, 8,
-        8, 0,
-        30 * 8, 0,
-        35 * 8, 8 * 5,
-        w - 8, 8 * 5,
-        w, 8 * 6,
-        w, h - 16,
-        w - 8, h - 8,
-        8, h - 8,
-        0, h - 16,
-      ], style: "fill:$chipEdge");
+      poly(
+          e,
+          [
+            0,
+            8,
+            8,
+            0,
+            30 * 8,
+            0,
+            35 * 8,
+            8 * 5,
+            w - 8,
+            8 * 5,
+            w,
+            8 * 6,
+            w,
+            h - 16,
+            w - 8,
+            h - 8,
+            8,
+            h - 8,
+            0,
+            h - 16,
+          ],
+          style: "fill:$chipEdge");
     }
 
     {
       var w = posts.clientWidth;
       var h = posts.clientHeight;
-      poly(e, [
-        0.5, 8 + 0.3,
-        8 + 0.3, 0.5,
-        30 * 8 - 0.3, 0.5,
-        35 * 8 - 0.3, 8 * 5 + 0.5,
-        w - 8 - 0.3, 8 * 5 + 0.5,
-        w - 0.5, 8 * 6 - 0.3,
-        w - 0.5, h - 16 - 0.3,
-        w - 8 - 0.3, h - 8 - 0.5,
-        8 + 0.5, h - 8 - 0.5,
-        0 + 0.5, h - 16 - 0.3,
-      ], style: "fill:$chipPrimary");
+      poly(
+          e,
+          [
+            0.5,
+            8 + 0.3,
+            8 + 0.3,
+            0.5,
+            30 * 8 - 0.3,
+            0.5,
+            35 * 8 - 0.3,
+            8 * 5 + 0.5,
+            w - 8 - 0.3,
+            8 * 5 + 0.5,
+            w - 0.5,
+            8 * 6 - 0.3,
+            w - 0.5,
+            h - 16 - 0.3,
+            w - 8 - 0.3,
+            h - 8 - 0.5,
+            8 + 0.5,
+            h - 8 - 0.5,
+            0 + 0.5,
+            h - 16 - 0.3,
+          ],
+          style: "fill:$chipPrimary");
     }
 
     postsBg.children = [e];
 
     var w = postsContent.clientWidth;
     var h = postsContent.clientHeight;
-    var path =
-      "polygon("
-      "0px 8px,"
-      "8px 0px,"
-      "${w - 8}px 0px,"
-      "${w}px 8px,"
-      "${w}px ${h - 8}px,"
-      "${w - 8}px ${h}px,"
-      "8px ${h}px,"
-      "0px ${h - 8}px"
-      ")";
+    var path = "polygon("
+        "0px 8px,"
+        "8px 0px,"
+        "${w - 8}px 0px,"
+        "${w}px 8px,"
+        "${w}px ${h - 8}px,"
+        "${w - 8}px ${h}px,"
+        "8px ${h}px,"
+        "0px ${h - 8}px"
+        ")";
     postsContent.style.clipPath = path;
   }
 
@@ -511,86 +760,153 @@ void startLayout() {
     {
       var w = projects.clientWidth;
       var h = projects.clientHeight;
-      poly(e, [
-        0, 8,
-        8, 0,
-        15 * 8, 0,
-        20 * 8, 8 * 5,
-        w - 8, 8 * 5,
-        w, 8 * 6,
-        w, h - 8,
-        w - 8, h,
-        w - 15 * 8, h,
-        w - 20 * 8, h - 8 * 5,
-        20 * 8, h - 8 * 5,
-        15 * 8, h,
-        15 * 8, h,
-        8, h,
-        0, h - 8,
-      ], style: "fill:$chipUnder");
+      poly(
+          e,
+          [
+            0,
+            8,
+            8,
+            0,
+            15 * 8,
+            0,
+            20 * 8,
+            8 * 5,
+            w - 8,
+            8 * 5,
+            w,
+            8 * 6,
+            w,
+            h - 8,
+            w - 8,
+            h,
+            w - 15 * 8,
+            h,
+            w - 20 * 8,
+            h - 8 * 5,
+            20 * 8,
+            h - 8 * 5,
+            15 * 8,
+            h,
+            15 * 8,
+            h,
+            8,
+            h,
+            0,
+            h - 8,
+          ],
+          style: "fill:$chipUnder");
     }
 
     {
       var w = projects.clientWidth;
       var h = projects.clientHeight;
-      poly(e, [
-        0, 8,
-        8, 0,
-        15 * 8, 0,
-        20 * 8, 8 * 5,
-        w - 20 * 8, 8 * 5,
-        w - 15 * 8, 0,
-        w - 8, 0,
-        w, 8,
-        w, h - 16,
-        w - 8, h - 8,
-        w - 15 * 8, h - 8,
-        w - 20 * 8, h - 8 * 6,
-        20 * 8, h - 8 * 6,
-        15 * 8, h - 8,
-        8, h - 8,
-        0, h - 16,
-      ], style: "fill:$chipEdge;");
+      poly(
+          e,
+          [
+            0,
+            8,
+            8,
+            0,
+            15 * 8,
+            0,
+            20 * 8,
+            8 * 5,
+            w - 20 * 8,
+            8 * 5,
+            w - 15 * 8,
+            0,
+            w - 8,
+            0,
+            w,
+            8,
+            w,
+            h - 16,
+            w - 8,
+            h - 8,
+            w - 15 * 8,
+            h - 8,
+            w - 20 * 8,
+            h - 8 * 6,
+            20 * 8,
+            h - 8 * 6,
+            15 * 8,
+            h - 8,
+            8,
+            h - 8,
+            0,
+            h - 16,
+          ],
+          style: "fill:$chipEdge;");
     }
 
     {
       var w = projects.clientWidth;
       var h = projects.clientHeight;
-      poly(e, [
-        0 + 0.5, 8 + 0.3,
-        8 + 0.3, 0.5,
-        15 * 8 - 0.3, 0 + 0.5,
-        20 * 8 - 0.3, 8 * 5 + 0.5,
-        w - 20 * 8 + 0.3, 8 * 5 + 0.5,
-        w - 15 * 8 + 0.3, 0 + 0.5,
-        w - 8 - 0.5 , 0.5,
-        w - 0.3, 8 + 0.5,
-        w - 0.5, h - 16 - 0.3,
-        w - 8 - 0.3, h - 8 - 0.5,
-        w - 15 * 8 + 0.3, h - 8 - 0.5,
-        w - 20 * 8 + 0.3, h - 8 * 6 - 0.5,
-        20 * 8 - 0.3, h - 8 * 6 - 0.5,
-        15 * 8 - 0.3, h - 8 - 0.5,
-        8 + 0.3, h - 8 - 0.5,
-        0 + 0.5, h - 16 + 0.3,
-      ], style: "fill:$chipPrimary;");
+      poly(
+          e,
+          [
+            0 + 0.5,
+            8 + 0.3,
+            8 + 0.3,
+            0.5,
+            15 * 8 - 0.3,
+            0 + 0.5,
+            20 * 8 - 0.3,
+            8 * 5 + 0.5,
+            w - 20 * 8 + 0.3,
+            8 * 5 + 0.5,
+            w - 15 * 8 + 0.3,
+            0 + 0.5,
+            w - 8 - 0.5,
+            0.5,
+            w - 0.3,
+            8 + 0.5,
+            w - 0.5,
+            h - 16 - 0.3,
+            w - 8 - 0.3,
+            h - 8 - 0.5,
+            w - 15 * 8 + 0.3,
+            h - 8 - 0.5,
+            w - 20 * 8 + 0.3,
+            h - 8 * 6 - 0.5,
+            20 * 8 - 0.3,
+            h - 8 * 6 - 0.5,
+            15 * 8 - 0.3,
+            h - 8 - 0.5,
+            8 + 0.3,
+            h - 8 - 0.5,
+            0 + 0.5,
+            h - 16 + 0.3,
+          ],
+          style: "fill:$chipPrimary;");
     }
 
     {
       var w = projectsContent.clientWidth;
       var h = projectsContent.clientHeight;
       var p = [
-        0, 8,
-        8, 0,
-        w - 8, 0,
-        w, 8,
-        w, h - 8,
-        w - 8, h,
-        8, h,
-        0, h - 8,
+        0,
+        8,
+        8,
+        0,
+        w - 8,
+        0,
+        w,
+        8,
+        w,
+        h - 8,
+        w - 8,
+        h,
+        8,
+        h,
+        0,
+        h - 8,
       ];
 
-      poly(e, p, style: "fill:$chipInner", transform: "translate(${projectsContent.offsetLeft},${projectsContent.offsetTop})");
+      poly(e, p,
+          style: "fill:$chipInner",
+          transform:
+              "translate(${projectsContent.offsetLeft},${projectsContent.offsetTop})");
     }
 
     projectsBg.children = [e];

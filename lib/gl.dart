@@ -55,9 +55,14 @@ class GLShader {
     }
   }
 
-  static Future<GLShader> load(GLViewport ctx, List<String> vertAssets, List<String> fragAssets) async {
-    List<String> vertSource = await Stream.fromIterable(vertAssets).asyncMap(HttpRequest.getString).toList();
-    List<String> fragSource = await Stream.fromIterable(fragAssets).asyncMap(HttpRequest.getString).toList();
+  static Future<GLShader> load(
+      GLViewport ctx, List<String> vertAssets, List<String> fragAssets) async {
+    List<String> vertSource = await Stream.fromIterable(vertAssets)
+        .asyncMap(HttpRequest.getString)
+        .toList();
+    List<String> fragSource = await Stream.fromIterable(fragAssets)
+        .asyncMap(HttpRequest.getString)
+        .toList();
     return GLShader(ctx, vertSource.join("\n"), fragSource.join("\n"));
   }
 
@@ -113,10 +118,9 @@ class GLViewport {
     var fw = fh * (width / height);
     pMatrix = makeFrustumMatrix(-fw, fw, -fh, fh, 0.1, 100.0);
     pMatrix.multiply(Matrix4.compose(
-      cameraPos,
-      Quaternion.euler(cameraAng.x, cameraAng.y, cameraAng.z),
-      Vector3.all(1.0)
-    ));
+        cameraPos,
+        Quaternion.euler(cameraAng.x, cameraAng.y, cameraAng.z),
+        Vector3.all(1.0)));
 
     mvStack = [];
   }
@@ -125,7 +129,8 @@ class GLViewport {
 
   FutureOr<JsObject> loadObj(String url) async {
     if (objCache.containsKey(url)) return objCache[url];
-    var obj = JsObject(context["OBJ"]["Mesh"], [await HttpRequest.getString(url)]);
+    var obj =
+        JsObject(context["OBJ"]["Mesh"], [await HttpRequest.getString(url)]);
     (context["OBJ"]["initMeshBuffers"] as JsFunction).apply([glJs, obj]);
     objCache[url] = obj;
     return obj;
@@ -137,7 +142,8 @@ class GLViewport {
     var key = Tuple2(vert, frag);
     if (shaderCache.containsKey(key)) return shaderCache[key];
 
-    var shader = GLShader(this,
+    var shader = GLShader(
+      this,
       await HttpRequest.getString(vert),
       await HttpRequest.getString(frag),
     );
@@ -148,7 +154,8 @@ class GLViewport {
 
   Map<Tuple5<String, int, int, int, int>, Texture> textureCache = {};
 
-  FutureOr<Texture> loadTexture(String url, {
+  FutureOr<Texture> loadTexture(
+    String url, {
     int level = 0,
     int internalFormat = WebGL.RGBA,
     int srcFormat = WebGL.RGBA,
@@ -163,16 +170,20 @@ class GLViewport {
     await img.onLoad.first;
 
     gl.bindTexture(WebGL.TEXTURE_2D, texture);
-    gl.texImage2D(WebGL.TEXTURE_2D, level, internalFormat, srcFormat, srcType, img);
+    gl.texImage2D(
+        WebGL.TEXTURE_2D, level, internalFormat, srcFormat, srcType, img);
 
     bool po2(int x) => x & (x - 1) == 0;
 
     if (po2(img.width) && po2(img.height)) {
       gl.generateMipmap(WebGL.TEXTURE_2D);
     } else {
-      gl.texParameteri(WebGL.TEXTURE_2D, WebGL.TEXTURE_WRAP_S, WebGL.CLAMP_TO_EDGE);
-      gl.texParameteri(WebGL.TEXTURE_2D, WebGL.TEXTURE_WRAP_T, WebGL.CLAMP_TO_EDGE);
-      gl.texParameteri(WebGL.TEXTURE_2D, WebGL.TEXTURE_MIN_FILTER, WebGL.LINEAR);
+      gl.texParameteri(
+          WebGL.TEXTURE_2D, WebGL.TEXTURE_WRAP_S, WebGL.CLAMP_TO_EDGE);
+      gl.texParameteri(
+          WebGL.TEXTURE_2D, WebGL.TEXTURE_WRAP_T, WebGL.CLAMP_TO_EDGE);
+      gl.texParameteri(
+          WebGL.TEXTURE_2D, WebGL.TEXTURE_MIN_FILTER, WebGL.LINEAR);
     }
 
     textureCache[key] = texture;
@@ -194,7 +205,8 @@ class GLFilter extends GLObject {
     gl.bindTexture(WebGL.TEXTURE_2D, texture);
     gl.useProgram(shader.program);
     gl.bindBuffer(WebGL.ARRAY_BUFFER, ctx.app.squareBuf);
-    gl.vertexAttribPointer(shader.attributes["aPos"], 2, WebGL.FLOAT, false, 0, 0);
+    gl.vertexAttribPointer(
+        shader.attributes["aPos"], 2, WebGL.FLOAT, false, 0, 0);
     gl.uniform1i(shader.uniforms["uTex"], 0);
     gl.drawArrays(WebGL.TRIANGLES, 0, 6);
   }
@@ -204,10 +216,12 @@ class GLApp {
   GLApp(this.canvas) {
     resizeObserver = ResizeObserver((l, r) {
       updateSize();
-    })..observe(canvas);
+    })
+      ..observe(canvas);
 
     gl = canvas.getContext3d();
-    glJs = JsObject.fromBrowserObject(gl.canvas).callMethod("getContext", ["webgl"]);
+    glJs = JsObject.fromBrowserObject(gl.canvas)
+        .callMethod("getContext", ["webgl"]);
     viewport = GLViewport(this);
     updateSize();
 
@@ -252,11 +266,14 @@ class GLApp {
     depthTex = gl.createTexture();
 
     gl.bindTexture(WebGL.TEXTURE_2D, depthTex);
-    gl.texImage2D(WebGL.TEXTURE_2D, 0, WebGL.DEPTH_COMPONENT, viewport.width, viewport.height, 0, WebGL.DEPTH_COMPONENT, WebGL.UNSIGNED_SHORT);
+    gl.texImage2D(WebGL.TEXTURE_2D, 0, WebGL.DEPTH_COMPONENT, viewport.width,
+        viewport.height, 0, WebGL.DEPTH_COMPONENT, WebGL.UNSIGNED_SHORT);
     gl.texParameteri(WebGL.TEXTURE_2D, WebGL.TEXTURE_MAG_FILTER, WebGL.NEAREST);
     gl.texParameteri(WebGL.TEXTURE_2D, WebGL.TEXTURE_MIN_FILTER, WebGL.NEAREST);
-    gl.texParameteri(WebGL.TEXTURE_2D, WebGL.TEXTURE_WRAP_S, WebGL.CLAMP_TO_EDGE);
-    gl.texParameteri(WebGL.TEXTURE_2D, WebGL.TEXTURE_WRAP_T, WebGL.CLAMP_TO_EDGE);
+    gl.texParameteri(
+        WebGL.TEXTURE_2D, WebGL.TEXTURE_WRAP_S, WebGL.CLAMP_TO_EDGE);
+    gl.texParameteri(
+        WebGL.TEXTURE_2D, WebGL.TEXTURE_WRAP_T, WebGL.CLAMP_TO_EDGE);
 
     for (var obj in objects) {
       obj.ctx = viewport;
@@ -266,9 +283,23 @@ class GLApp {
 
     squareBuf = gl.createBuffer();
     gl.bindBuffer(WebGL.ARRAY_BUFFER, squareBuf);
-    gl.bufferData(WebGL.ARRAY_BUFFER, Float32List.fromList([
-      0, 0, 0, 1, 1, 0, 1, 0, 0, 1, 1, 1,
-    ]), WebGL.STATIC_DRAW);
+    gl.bufferData(
+        WebGL.ARRAY_BUFFER,
+        Float32List.fromList([
+          0,
+          0,
+          0,
+          1,
+          1,
+          0,
+          1,
+          0,
+          0,
+          1,
+          1,
+          1,
+        ]),
+        WebGL.STATIC_DRAW);
 
     updateSize();
   }
@@ -289,13 +320,20 @@ class GLApp {
     gl.bindTexture(WebGL.TEXTURE_2D, tex);
 
     gl.texImage2D(
-      WebGL.TEXTURE_2D, 0, WebGL.RGBA,
-      viewport.width, viewport.height, 0,
-      WebGL.RGBA, webglExt["OES_texture_half_float"]["HALF_FLOAT_OES"], null
-    );
+        WebGL.TEXTURE_2D,
+        0,
+        WebGL.RGBA,
+        viewport.width,
+        viewport.height,
+        0,
+        WebGL.RGBA,
+        webglExt["OES_texture_half_float"]["HALF_FLOAT_OES"],
+        null);
 
-    gl.texParameteri(WebGL.TEXTURE_2D, WebGL.TEXTURE_WRAP_S, WebGL.CLAMP_TO_EDGE);
-    gl.texParameteri(WebGL.TEXTURE_2D, WebGL.TEXTURE_WRAP_T, WebGL.CLAMP_TO_EDGE);
+    gl.texParameteri(
+        WebGL.TEXTURE_2D, WebGL.TEXTURE_WRAP_S, WebGL.CLAMP_TO_EDGE);
+    gl.texParameteri(
+        WebGL.TEXTURE_2D, WebGL.TEXTURE_WRAP_T, WebGL.CLAMP_TO_EDGE);
     gl.texParameteri(WebGL.TEXTURE_2D, WebGL.TEXTURE_MIN_FILTER, WebGL.LINEAR);
     gl.bindTexture(WebGL.TEXTURE_2D, null);
   }
@@ -325,8 +363,10 @@ class GLApp {
       lastDraw = now;
 
       gl.bindFramebuffer(WebGL.FRAMEBUFFER, framebuffer);
-      gl.framebufferTexture2D(WebGL.FRAMEBUFFER, WebGL.COLOR_ATTACHMENT0, WebGL.TEXTURE_2D, framebufferTex, 0);
-      gl.framebufferTexture2D(WebGL.FRAMEBUFFER, WebGL.DEPTH_ATTACHMENT, WebGL.TEXTURE_2D, depthTex, 0);
+      gl.framebufferTexture2D(WebGL.FRAMEBUFFER, WebGL.COLOR_ATTACHMENT0,
+          WebGL.TEXTURE_2D, framebufferTex, 0);
+      gl.framebufferTexture2D(WebGL.FRAMEBUFFER, WebGL.DEPTH_ATTACHMENT,
+          WebGL.TEXTURE_2D, depthTex, 0);
 
       gl.enable(WebGL.DEPTH_TEST);
       viewport.draw();
@@ -341,8 +381,10 @@ class GLApp {
           gl.clearColor(1, 0.4, 1, 1);
           gl.clear(WebGL.COLOR_BUFFER_BIT | WebGL.DEPTH_BUFFER_BIT);
         } else {
-          gl.framebufferTexture2D(WebGL.FRAMEBUFFER, WebGL.COLOR_ATTACHMENT0, WebGL.TEXTURE_2D, a, 0);
-          gl.framebufferTexture2D(WebGL.FRAMEBUFFER, WebGL.DEPTH_ATTACHMENT, WebGL.TEXTURE_2D,depthTex, 0);
+          gl.framebufferTexture2D(WebGL.FRAMEBUFFER, WebGL.COLOR_ATTACHMENT0,
+              WebGL.TEXTURE_2D, a, 0);
+          gl.framebufferTexture2D(WebGL.FRAMEBUFFER, WebGL.DEPTH_ATTACHMENT,
+              WebGL.TEXTURE_2D, depthTex, 0);
         }
 
         filter.texture = a;
@@ -354,9 +396,10 @@ class GLApp {
       }
     }
 
-    if (drawing) window.animationFrame.then((_) {
-      draw();
-    });
+    if (drawing)
+      window.animationFrame.then((_) {
+        draw();
+      });
   }
 
   void start() {

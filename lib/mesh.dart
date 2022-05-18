@@ -22,8 +22,10 @@ class BasicMaterial extends GLMaterial {
     var gl = ctx.gl;
     gl.useProgram(shader.program);
 
-    gl.uniformMatrix4fv(shader.uniforms['uPMatrix'], false, ctx.pMatrix.storage);
-    gl.uniformMatrix4fv(shader.uniforms['uMVMatrix'], false, ctx.mvMatrix.storage);
+    gl.uniformMatrix4fv(
+        shader.uniforms['uPMatrix'], false, ctx.pMatrix.storage);
+    gl.uniformMatrix4fv(
+        shader.uniforms['uMVMatrix'], false, ctx.mvMatrix.storage);
 
     var tex = WebGL.TEXTURE0;
     for (var u in uniforms.keys) {
@@ -47,7 +49,8 @@ class BasicMaterial extends GLMaterial {
         gl.uniformMatrix3fv(shader.uniforms[u], false, v.storage);
       } else if (v is Matrix4) {
         gl.uniformMatrix4fv(shader.uniforms[u], false, v.storage);
-      } else throw "Unknown uniform type: '${v.runtimeType}'";
+      } else
+        throw "Unknown uniform type: '${v.runtimeType}'";
     }
   }
 }
@@ -78,14 +81,20 @@ class MeshGLObject extends GLObject {
 
     mat.draw(ctx);
 
-    (glJs["bindBuffer"] as JsFunction).apply([WebGL.ARRAY_BUFFER, obj["vertexBuffer"]], thisArg: glJs);
-    gl.vertexAttribPointer(mat.shader.attributes["aVertexPosition"], obj["vertexBuffer"]["itemSize"], WebGL.FLOAT, false, 0, 0);
+    (glJs["bindBuffer"] as JsFunction)
+        .apply([WebGL.ARRAY_BUFFER, obj["vertexBuffer"]], thisArg: glJs);
+    gl.vertexAttribPointer(mat.shader.attributes["aVertexPosition"],
+        obj["vertexBuffer"]["itemSize"], WebGL.FLOAT, false, 0, 0);
 
-    (glJs["bindBuffer"] as JsFunction).apply([WebGL.ARRAY_BUFFER, obj["textureBuffer"]], thisArg: glJs);
-    gl.vertexAttribPointer(mat.shader.attributes["aTexCoord"], obj["textureBuffer"]["itemSize"], WebGL.FLOAT, false, 0, 0);
+    (glJs["bindBuffer"] as JsFunction)
+        .apply([WebGL.ARRAY_BUFFER, obj["textureBuffer"]], thisArg: glJs);
+    gl.vertexAttribPointer(mat.shader.attributes["aTexCoord"],
+        obj["textureBuffer"]["itemSize"], WebGL.FLOAT, false, 0, 0);
 
-    (glJs["bindBuffer"] as JsFunction).apply([WebGL.ELEMENT_ARRAY_BUFFER, obj["indexBuffer"]], thisArg: glJs);
-    gl.drawElements(WebGL.TRIANGLES, obj["indexBuffer"]["numItems"], WebGL.UNSIGNED_SHORT, 0);
+    (glJs["bindBuffer"] as JsFunction)
+        .apply([WebGL.ELEMENT_ARRAY_BUFFER, obj["indexBuffer"]], thisArg: glJs);
+    gl.drawElements(WebGL.TRIANGLES, obj["indexBuffer"]["numItems"],
+        WebGL.UNSIGNED_SHORT, 0);
 
     ctx.mvPop();
   }

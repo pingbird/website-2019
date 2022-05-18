@@ -27,7 +27,8 @@ Future<void> startLayout() async {
 
   int shrink = 0;
 
-  void poly(Element parent, List<num> points, {String style, String transform, String opacity}) {
+  void poly(Element parent, List<num> points,
+      {String style, String transform, String opacity}) {
     var p = PolygonElement();
     var pts = StringBuffer();
     for (int i = 0; i < points.length; i += 2) {
@@ -50,25 +51,22 @@ Future<void> startLayout() async {
 
     var defs = SvgElement.tag("defs");
 
-    defs.children.add(
-      SvgElement.tag("linearGradient")
-        ..attributes["id"] = "blue"
-        ..attributes["x1"] = "0%"
-        ..attributes["x2"] = "0%"
-        ..attributes["x2"] = "100%"
-        ..attributes["y2"] = "100%"
-        ..children.addAll([
-          SvgElement.tag("stop")
-            ..attributes["offset"] = "0%"
-            ..style.setProperty("stop-color", "#333333")
-            ..style.setProperty("stop-opacity", "0.9"),
-
-          SvgElement.tag("stop")
-            ..attributes["offset"] = "100%"
-            ..style.setProperty("stop-color", "#444444")
-            ..style.setProperty("stop-opacity", "0.9"),
-        ])
-    );
+    defs.children.add(SvgElement.tag("linearGradient")
+      ..attributes["id"] = "blue"
+      ..attributes["x1"] = "0%"
+      ..attributes["x2"] = "0%"
+      ..attributes["x2"] = "100%"
+      ..attributes["y2"] = "100%"
+      ..children.addAll([
+        SvgElement.tag("stop")
+          ..attributes["offset"] = "0%"
+          ..style.setProperty("stop-color", "#333333")
+          ..style.setProperty("stop-opacity", "0.9"),
+        SvgElement.tag("stop")
+          ..attributes["offset"] = "100%"
+          ..style.setProperty("stop-color", "#444444")
+          ..style.setProperty("stop-opacity", "0.9"),
+      ]));
 
     e.children.add(defs);
 
@@ -79,16 +77,24 @@ Future<void> startLayout() async {
     var r = l + content.clientWidth;
 
     var p = [
-      0, 0,
-      w, 0,
-      w, if (shrink < 1) h - 4 * 8 else h,
+      0,
+      0,
+      w,
+      0,
+      w,
+      if (shrink < 1) h - 4 * 8 else h,
       if (shrink < 1) ...[
-        r - 32 * 8, h - 4 * 8,
-        r - 37 * 8, h,
-        l + 37 * 8, h,
-        l + 32 * 8, h - 4 * 8,
+        r - 32 * 8,
+        h - 4 * 8,
+        r - 37 * 8,
+        h,
+        l + 37 * 8,
+        h,
+        l + 32 * 8,
+        h - 4 * 8,
       ],
-      0, if (shrink < 1) h - 4 * 8 else h,
+      0,
+      if (shrink < 1) h - 4 * 8 else h,
     ];
 
     poly(e, p, style: "stroke:#333333;stroke-width:2;");
@@ -123,7 +129,9 @@ Future<void> startLayout() async {
     var widths = <double>[];
 
     for (var i in images) {
-      var estWidth = min(imgHeight * 2, imgHeight * (i.meta.width / i.meta.height)) + imgPadding;
+      var estWidth =
+          min(imgHeight * 2, imgHeight * (i.meta.width / i.meta.height)) +
+              imgPadding;
       widths.add(estWidth);
     }
 
@@ -194,7 +202,8 @@ Future<void> startLayout() async {
               loadedThumbs.add(thumb);
               div.style.opacity = "1";
             });
-          })..observe(div);
+          })
+            ..observe(div);
           observers.add(observer);
         }
 
@@ -204,27 +213,21 @@ Future<void> startLayout() async {
             ..children.add(ImageElement()
               ..src = "/assets/play.svg"
               ..style.width = "64px"
-              ..style.height = "64px"
-            )
-          );
+              ..style.height = "64px"));
         } else if (cn is GalleryImage && cn.mime == "image/gif") {
           div.children.add(DivElement()
             ..classes.add("gallery-img-overlay")
             ..children.add(ImageElement()
               ..src = "/assets/gif.svg"
               ..style.width = "64px"
-              ..style.height = "64px"
-            )
-          );
+              ..style.height = "64px"));
         } else if (cn is GalleryScene) {
           div.children.add(DivElement()
             ..classes.add("gallery-img-overlay")
             ..children.add(ImageElement()
               ..src = "/assets/cube.svg"
               ..style.width = "48px"
-              ..style.height = "48px"
-            )
-          );
+              ..style.height = "48px"));
         }
 
         rdiv.children.add(div
@@ -232,8 +235,7 @@ Future<void> startLayout() async {
           ..style.width = "${w}px"
           ..style.height = "${imgHeight}px"
           ..style.margin = "${imgPadding}px"
-          ..onClick.listen((_) => modal.showContent(cn))
-        );
+          ..onClick.listen((_) => modal.showContent(cn)));
       }
 
       gallery.children.add(rdiv);

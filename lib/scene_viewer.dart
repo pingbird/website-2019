@@ -28,7 +28,8 @@ class SceneViewer extends Viewer {
 
     var vp = app.viewport;
 
-    var previewShader = await vp.loadShader("/assets/gl/plainColor/vert.glsl", "/assets/gl/plainColor/frag.glsl");
+    var previewShader = await vp.loadShader(
+        "/assets/gl/plainColor/vert.glsl", "/assets/gl/plainColor/frag.glsl");
 
     for (var m in scene.models) {
       var uniforms = <String, dynamic>{};
@@ -44,27 +45,28 @@ class SceneViewer extends Viewer {
             var v = m.uniforms[k];
             if (v is String) {
               uniforms[k] = await vp.loadTexture(v);
-            } else uniforms[k] = v;
+            } else
+              uniforms[k] = v;
           }
           mat.shader = s;
         }));
       }
 
-      await app.addObject(
-        MeshGLObject(
-          await vp.loadObj(m.obj),
-          mat,
-        )
-          ..pos = m.pos
-          ..ang = m.ang
-          ..scale = m.scale
-      );
+      await app.addObject(MeshGLObject(
+        await vp.loadObj(m.obj),
+        mat,
+      )
+        ..pos = m.pos
+        ..ang = m.ang
+        ..scale = m.scale);
     }
 
-    await app.addObject(GLFilter(vp, await vp.loadShader(
-      "/assets/gl/tonemap/vert.glsl",
-      "/assets/gl/tonemap/frag.glsl",
-    )));
+    await app.addObject(GLFilter(
+        vp,
+        await vp.loadShader(
+          "/assets/gl/tonemap/vert.glsl",
+          "/assets/gl/tonemap/frag.glsl",
+        )));
 
     app.start();
 
@@ -104,7 +106,8 @@ class SceneViewer extends Viewer {
         lastOffset = e.offset;
       }
 
-      cameraPitch = max(-pi / 2 + 0.1, min(pi / 2 - 0.1, cameraPitch + (e.offset.y - lastOffset.y) * 0.01));
+      cameraPitch = max(-pi / 2 + 0.1,
+          min(pi / 2 - 0.1, cameraPitch + (e.offset.y - lastOffset.y) * 0.01));
       cameraYaw += (e.offset.x - lastOffset.x) * 0.01;
       updateCamera();
 
