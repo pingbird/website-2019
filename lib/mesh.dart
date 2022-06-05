@@ -1,14 +1,12 @@
-import 'dart:html';
 import 'dart:js';
-import 'dart:typed_data';
 import 'dart:web_gl';
 
-import 'package:w2019/gl.dart';
 import 'package:vector_math/vector_math_64.dart';
+import 'package:w2019/gl.dart';
 
 abstract class GLMaterial {
-  GLViewport ctx;
-  GLShader shader;
+  late GLViewport ctx;
+  late GLShader shader;
   void draw(GLViewport ctx);
 }
 
@@ -83,12 +81,12 @@ class MeshGLObject extends GLObject {
 
     (glJs["bindBuffer"] as JsFunction)
         .apply([WebGL.ARRAY_BUFFER, obj["vertexBuffer"]], thisArg: glJs);
-    gl.vertexAttribPointer(mat.shader.attributes["aVertexPosition"],
+    gl.vertexAttribPointer(mat.shader.attributes["aVertexPosition"]!,
         obj["vertexBuffer"]["itemSize"], WebGL.FLOAT, false, 0, 0);
 
     (glJs["bindBuffer"] as JsFunction)
         .apply([WebGL.ARRAY_BUFFER, obj["textureBuffer"]], thisArg: glJs);
-    gl.vertexAttribPointer(mat.shader.attributes["aTexCoord"],
+    gl.vertexAttribPointer(mat.shader.attributes["aTexCoord"]!,
         obj["textureBuffer"]["itemSize"], WebGL.FLOAT, false, 0, 0);
 
     (glJs["bindBuffer"] as JsFunction)

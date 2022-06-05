@@ -3,35 +3,40 @@ import 'dart:math';
 import 'dart:svg';
 
 void startLayout() {
-  var body = querySelector("body");
-  var bodyBg = querySelector("#body-bg");
-  var content = querySelector("#content");
-  var contentBg = querySelector("#content-bg");
-  var header = querySelector("#header");
-  var headerBg = querySelector("#header-bg");
-  var tstText = querySelector("#tst-text");
-  var tstBtnRow = querySelector("#tst-btn-row");
-  var aboutRow = querySelector("#about-row");
-  var about = querySelector("#about");
-  var aboutBg = querySelector("#about-bg");
-  var aboutTitle = querySelector("#about-title");
-  var aboutContent = querySelector("#about-content");
-  var links = querySelector("#links");
-  var linksBg = querySelector("#links-bg");
-  var linksTitle = querySelector("#links-title");
-  var linksContent = querySelector("#links-content");
-  var posts = querySelector("#recent-posts");
-  var postsBg = querySelector("#recent-posts-bg");
-  var postsTitle = querySelector("#recent-posts-title");
-  var postsContent = querySelector("#recent-posts-content");
-  var projects = querySelector("#projects");
-  var projectsBg = querySelector("#projects-bg");
-  var projectsContent = querySelector("#projects-content");
+  var body = querySelector("body")!;
+  var bodyBg = querySelector("#body-bg")!;
+  var content = querySelector("#content")!;
+  var contentBg = querySelector("#content-bg")!;
+  var header = querySelector("#header")!;
+  var headerBg = querySelector("#header-bg")!;
+  var tstText = querySelector("#tst-text")!;
+  var tstBtnRow = querySelector("#tst-btn-row")!;
+  var aboutRow = querySelector("#about-row")!;
+  var about = querySelector("#about")!;
+  var aboutBg = querySelector("#about-bg")!;
+  var aboutTitle = querySelector("#about-title")!;
+  var aboutContent = querySelector("#about-content")!;
+  var links = querySelector("#links")!;
+  var linksBg = querySelector("#links-bg")!;
+  var linksTitle = querySelector("#links-title")!;
+  var linksContent = querySelector("#links-content")!;
+  var posts = querySelector("#recent-posts")!;
+  var postsBg = querySelector("#recent-posts-bg")!;
+  var postsTitle = querySelector("#recent-posts-title")!;
+  var postsContent = querySelector("#recent-posts-content")!;
+  var projects = querySelector("#projects")!;
+  var projectsBg = querySelector("#projects-bg")!;
+  var projectsContent = querySelector("#projects-content")!;
 
   int shrink = 0;
 
-  void poly(Element parent, List<num> points,
-      {String style, String transform, String opacity}) {
+  void poly(
+    Element parent,
+    List<num> points, {
+    String? style,
+    String? transform,
+    String? opacity,
+  }) {
     var p = PolygonElement();
     var pts = StringBuffer();
     for (int i = 0; i < points.length; i += 2) {
@@ -185,7 +190,7 @@ void startLayout() {
     const st = 8 / 6;
 
     {
-      List<num> head(int ox, int oy) => [
+      List<num> head(num ox, num oy) => [
             18 * st + ox,
             oy + 3 * st,
             16 * st + ox,

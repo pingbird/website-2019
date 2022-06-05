@@ -1,25 +1,23 @@
 import 'dart:html';
 
 void startProjects() {
-  var projContent = querySelector("#projects-content");
-
-  var r1 = querySelector("#proj-row1");
-  var r2 = querySelector("#proj-row2");
-  var r3 = querySelector("#proj-row3");
+  var r1 = querySelector("#proj-row1")!;
+  var r2 = querySelector("#proj-row2")!;
+  var r3 = querySelector("#proj-row3")!;
 
   r1.children.clear();
   r2.children.clear();
   r3.children.clear();
 
   void add(
-    DivElement e, {
-    String name,
-    String content,
-    String github,
-    String gitlab,
-    String website,
-    String blog,
-    String bg,
+    Element e, {
+    required String name,
+    String? content,
+    String? github,
+    String? gitlab,
+    String? website,
+    String? blog,
+    String? bg,
   }) {
     AnchorElement btn(String icon, String name, String url) => AnchorElement()
       ..href = url
@@ -60,21 +58,25 @@ void startProjects() {
       ]));
   }
 
-  add(r1,
-      name: "c.tst.sh",
-      content:
-          "A zachtronics inspired CMOS digital logic simulator. Allows you to create any digital circuit at the silicon level.",
-      blog: "https://blog.tst.sh/kohctpyktop-2-electric-bogaloo/",
-      website: "https://c.tst.sh/",
-      bg: "icons/banner/crc.svg");
+  add(
+    r1,
+    name: "c.tst.sh",
+    content:
+        "A zachtronics inspired CMOS digital logic simulator. Allows you to create any digital circuit at the silicon level.",
+    blog: "https://blog.tst.sh/kohctpyktop-2-electric-bogaloo/",
+    website: "https://c.tst.sh/",
+    bg: "icons/banner/crc.svg",
+  );
 
-  add(r1,
-      name: "Tangent",
-      content:
-          "First of its kind discord bot with an interactive repl for 50+ languages, gives users full control over a secure Linux VM.",
-      blog: "https://github.com/PixelToast/tangent",
-      github: "https://github.com/PixelToast/tangent",
-      bg: "icons/banner/tan.svg");
+  add(
+    r1,
+    name: "Tangent",
+    content:
+        "First of its kind discord bot with an interactive repl for 50+ languages, gives users full control over a secure Linux VM.",
+    blog: "https://github.com/PixelToast/tangent",
+    github: "https://github.com/PixelToast/tangent",
+    bg: "icons/banner/tan.svg",
+  );
 
   add(
     r2,

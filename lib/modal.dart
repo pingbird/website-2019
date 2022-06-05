@@ -1,9 +1,9 @@
 import 'dart:html';
 import 'dart:typed_data';
 
+import 'package:vector_math/vector_math_64.dart';
 import 'package:w2019/image_viewer.dart';
 import 'package:w2019/scene_viewer.dart';
-import 'package:vector_math/vector_math_64.dart';
 
 class GalleryMeta {
   int width;
@@ -63,7 +63,7 @@ class GalleryScene extends GalleryContent {
       );
 }
 
-List<double> _doubles(dynamic data, int count) {
+Float64List _doubles(dynamic data, int count) {
   var o = Float64List(count);
   for (int i = 0; i < count; i++) {
     o[i] = (data[i] as num).toDouble();
@@ -100,8 +100,8 @@ class GalleryModel {
   Vector3 pos;
   Vector3 ang;
   Vector3 scale;
-  String fragShader;
-  String vertShader;
+  String? fragShader;
+  String? vertShader;
   Map<String, dynamic> uniforms;
 
   GalleryModel(this.obj, this.pos, this.ang, this.scale, this.fragShader,
@@ -120,31 +120,31 @@ class GalleryModel {
 
 class Modal {
   Modal(this.parent) {
-    parent.onKeyDown.listen((ev) {
+    parent!.onKeyDown.listen((ev) {
       if (ev.keyCode == 27) {
         close();
       }
     });
   }
 
-  Element parent;
-  DivElement modal;
-  DivElement div;
+  Element? parent;
+  DivElement? modal;
+  DivElement? div;
   bool open = false;
   bool closing = false;
-  Viewer viewer;
+  Viewer? viewer;
 
   void close() async {
     if (!open || closing) return;
-    modal.style.opacity = "0";
+    modal!.style.opacity = "0";
     closing = true;
     await Future.delayed(Duration(milliseconds: 200));
-    modal.remove();
+    modal!.remove();
     modal = null;
     div = null;
     closing = false;
     open = false;
-    viewer.close();
+    viewer!.close();
     viewer = null;
   }
 
@@ -166,12 +166,12 @@ class Modal {
 
     div = DivElement()..id = "modal-content";
 
-    modal.children.add(div);
-    parent.children.add(modal);
+    modal!.children.add(div!);
+    parent!.children.add(modal!);
 
     open = true;
     await Future.delayed(Duration.zero);
-    modal.style.opacity = "1";
+    modal!.style.opacity = "1";
     viewer.modal = this;
     this.viewer = viewer;
     await viewer.show();
@@ -179,7 +179,7 @@ class Modal {
 }
 
 abstract class Viewer {
-  Modal modal;
+  late Modal modal;
   Future<void> show();
   void close() {}
 }

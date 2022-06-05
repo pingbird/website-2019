@@ -1,23 +1,22 @@
-import 'dart:typed_data';
 import 'dart:web_gl';
 
-import 'package:w2019/gl.dart';
 import 'package:vector_math/vector_math.dart';
+import 'package:w2019/gl.dart';
 
 class SpriteGLObject extends GLObject {
   List<String> vertAssets;
   List<String> fragAssets;
 
-  SpriteGLObject(this.texture,
-      {this.matrix,
-      this.vertAssets = const ["/assets/gl/sprite/vert.glsl"],
-      this.fragAssets = const ["/assets/gl/sprite/frag.glsl"]}) {
-    matrix ??= Matrix4.identity();
-  }
+  SpriteGLObject(
+    this.texture, {
+    Matrix4? matrix,
+    this.vertAssets = const ["/assets/gl/sprite/vert.glsl"],
+    this.fragAssets = const ["/assets/gl/sprite/frag.glsl"],
+  }) : matrix = matrix ?? Matrix4.identity();
 
   Texture texture;
-  Matrix4 matrix;
-  GLShader shader;
+  final Matrix4 matrix;
+  late GLShader shader;
 
   init() async {
     shader = await GLShader.load(ctx, vertAssets, fragAssets);
@@ -30,7 +29,13 @@ class SpriteGLObject extends GLObject {
     gl.useProgram(shader.program);
     gl.bindBuffer(WebGL.ARRAY_BUFFER, ctx.app.squareBuf);
     gl.vertexAttribPointer(
-        shader.attributes["aPos"], 2, WebGL.FLOAT, false, 0, 0);
+      shader.attributes["aPos"]!,
+      2,
+      WebGL.FLOAT,
+      false,
+      0,
+      0,
+    );
     gl.uniformMatrix4fv(shader.uniforms['uMatrix'], false, matrix.storage);
     gl.uniform1i(shader.uniforms["uTex"], 0);
     gl.drawArrays(WebGL.TRIANGLES, 0, 6);

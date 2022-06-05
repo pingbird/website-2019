@@ -1,18 +1,18 @@
+import 'dart:async';
 import 'dart:html';
 import 'dart:math';
 
+import 'package:vector_math/vector_math.dart';
 import 'package:w2019/gl.dart';
 import 'package:w2019/mesh.dart';
 import 'package:w2019/modal.dart';
-import 'package:pedantic/pedantic.dart';
-import 'package:vector_math/vector_math.dart';
 
 class SceneViewer extends Viewer {
-  GalleryScene scene;
+  final GalleryScene scene;
 
   SceneViewer(this.scene);
 
-  GLApp app;
+  late GLApp app;
 
   show() async {
     var e = CanvasElement()
@@ -21,7 +21,7 @@ class SceneViewer extends Viewer {
       ..style.height = "768px"
       ..style.backgroundColor = scene.meta.color;
 
-    modal.div.children.add(e);
+    modal.div!.children.add(e);
 
     app = GLApp(e);
     await app.init();
@@ -40,7 +40,7 @@ class SceneViewer extends Viewer {
       );
 
       if (m.vertShader != null && m.fragShader != null) {
-        unawaited(vp.loadShader(m.vertShader, m.fragShader).then((s) async {
+        unawaited(vp.loadShader(m.vertShader!, m.fragShader!).then((s) async {
           for (var k in m.uniforms.keys) {
             var v = m.uniforms[k];
             if (v is String) {
@@ -76,8 +76,8 @@ class SceneViewer extends Viewer {
     var cameraPitch = 0.0;
     var cameraDist = 10.0;
 
-    Point<num> lastOffset;
-    int lastDt;
+    Point<num>? lastOffset;
+    int? lastDt;
 
     var down = false;
 
@@ -102,13 +102,13 @@ class SceneViewer extends Viewer {
 
       lastOffset ??= e.offset;
 
-      if (dt - lastDt > 500 && (lastOffset - e.offset).magnitude > 100) {
+      if (dt - lastDt! > 500 && (lastOffset! - e.offset).magnitude > 100) {
         lastOffset = e.offset;
       }
 
       cameraPitch = max(-pi / 2 + 0.1,
-          min(pi / 2 - 0.1, cameraPitch + (e.offset.y - lastOffset.y) * 0.01));
-      cameraYaw += (e.offset.x - lastOffset.x) * 0.01;
+          min(pi / 2 - 0.1, cameraPitch + (e.offset.y - lastOffset!.y) * 0.01));
+      cameraYaw += (e.offset.x - lastOffset!.x) * 0.01;
       updateCamera();
 
       lastOffset = e.offset;

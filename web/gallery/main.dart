@@ -3,32 +3,35 @@ library t;
 
 import 'dart:convert';
 import 'dart:html';
-import 'dart:js';
 import 'dart:math';
 import 'dart:svg' hide ImageElement;
 
-import 'package:w2019/image_viewer.dart';
-import 'package:w2019/modal.dart';
-import 'package:tuple/tuple.dart';
 import 'package:js/js.dart';
+import 'package:tuple/tuple.dart';
+import 'package:w2019/modal.dart';
 
 @JS("isIntersecting")
 external bool isIntersecting(dynamic obj);
 
 Future<void> startLayout() async {
-  var body = querySelector("body");
-  var bodyBg = querySelector("#body-bg");
-  var content = querySelector("#content");
-  var contentBg = querySelector("#content-bg");
-  var header = querySelector("#header");
-  var headerBg = querySelector("#header-bg");
-  var tstText = querySelector("#tst-text");
-  var gallery = querySelector("#gallery");
+  var body = querySelector("body")!;
+  var bodyBg = querySelector("#body-bg")!;
+  var content = querySelector("#content")!;
+  var contentBg = querySelector("#content-bg")!;
+  var header = querySelector("#header")!;
+  var headerBg = querySelector("#header-bg")!;
+  var tstText = querySelector("#tst-text")!;
+  var gallery = querySelector("#gallery")!;
 
   int shrink = 0;
 
-  void poly(Element parent, List<num> points,
-      {String style, String transform, String opacity}) {
+  void poly(
+    Element parent,
+    List<num> points, {
+    String? style,
+    String? transform,
+    String? opacity,
+  }) {
     var p = PolygonElement();
     var pts = StringBuffer();
     for (int i = 0; i < points.length; i += 2) {
@@ -44,7 +47,7 @@ Future<void> startLayout() async {
     parent.children.add(p);
   }
 
-  int lastWidth;
+  int? lastWidth;
 
   void renderBody() {
     var e = SvgSvgElement();
@@ -132,7 +135,7 @@ Future<void> startLayout() async {
       var estWidth =
           min(imgHeight * 2, imgHeight * (i.meta.width / i.meta.height)) +
               imgPadding;
-      widths.add(estWidth);
+      widths.add(estWidth.toDouble());
     }
 
     int i = 0;
@@ -192,7 +195,7 @@ Future<void> startLayout() async {
           div.style.backgroundImage = "url('${thumb}')";
           div.classes.add("visible");
         } else {
-          IntersectionObserver observer;
+          late IntersectionObserver observer;
           observer = IntersectionObserver((l, _2) {
             if (l.length == 1 && !isIntersecting(l[0])) return;
             observer.disconnect();

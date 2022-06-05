@@ -1,9 +1,9 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
 import 'package:crypto/crypto.dart';
 import 'package:mime/mime.dart';
-import 'package:pedantic/pedantic.dart';
 import 'package:tuple/tuple.dart';
 import 'package:uuid/uuid.dart';
 
@@ -51,10 +51,10 @@ Future<Tuple2<int, int>> imgSize(String path) async {
   var match = RegExp(r"(\d+)x(\d+)").firstMatch(str);
 
   if (match == null) throw "Could not get size: '$str'";
-  return Tuple2(int.parse(match.group(1)), int.parse(match.group(2)));
+  return Tuple2(int.parse(match.group(1)!), int.parse(match.group(2)!));
 }
 
-Future<List<int>> convert(List<String> args, [List<int> data]) async {
+Future<List<int>> convert(List<String> args, [List<int>? data]) async {
   var proc = await Process.start(
       "C:\\Program Files\\ImageMagick-7.0.9-Q16\\magick.exe", args);
 
@@ -96,7 +96,7 @@ void main(List<String> args) async {
   config["pool"] ??= {};
   if (config["pool"][id] != null) throw "Image already exists;";
 
-  var mime = lookupMimeType(args[0], headerBytes: imgData).split("/");
+  var mime = lookupMimeType(args[0], headerBytes: imgData)!.split("/");
 
   await mkDir("content/$id");
   await writeFile("content/$id/full.${mime[1]}", imgData);

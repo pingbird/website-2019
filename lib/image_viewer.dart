@@ -16,11 +16,11 @@ class ImageViewer extends Viewer {
         ..setAttribute("controls", "true")
         ..style.backgroundColor = img.meta.color;
 
-      modal.div.onClick.listen((e) {
+      modal.div!.onClick.listen((e) {
         e.stopPropagation();
       });
 
-      modal.div.children.add(e);
+      modal.div!.children.add(e);
       e.style.opacity = "1";
     } else {
       var e = ImageElement()
@@ -28,7 +28,7 @@ class ImageViewer extends Viewer {
         ..src = img.src
         ..style.backgroundColor = img.meta.color;
 
-      modal.div.children.add(e);
+      modal.div!.children.add(e);
       await e.onLoad.first;
       e.style.opacity = "1";
     }

@@ -16,18 +16,18 @@ class GLShader {
     gl.shaderSource(fragShader, fragSrc);
     gl.compileShader(fragShader);
 
-    if (!gl.getShaderParameter(fragShader, WebGL.COMPILE_STATUS)) {
+    if (!(gl.getShaderParameter(fragShader, WebGL.COMPILE_STATUS) as bool)) {
       window.console.error("Error in fragment shader");
-      throw gl.getShaderInfoLog(fragShader);
+      throw gl.getShaderInfoLog(fragShader)!;
     }
 
     var vertShader = gl.createShader(WebGL.VERTEX_SHADER);
     gl.shaderSource(vertShader, vertSrc);
     gl.compileShader(vertShader);
 
-    if (!gl.getShaderParameter(vertShader, WebGL.COMPILE_STATUS)) {
+    if (!(gl.getShaderParameter(vertShader, WebGL.COMPILE_STATUS) as bool)) {
       window.console.error("Error in vertex shader");
-      throw gl.getShaderInfoLog(vertShader);
+      throw gl.getShaderInfoLog(vertShader)!;
     }
 
     program = gl.createProgram();
@@ -35,12 +35,13 @@ class GLShader {
     gl.attachShader(program, fragShader);
     gl.linkProgram(program);
 
-    if (!gl.getProgramParameter(program, WebGL.LINK_STATUS)) {
+    if (!(gl.getProgramParameter(program, WebGL.LINK_STATUS) as bool)) {
       window.console.error("Error linking shader");
-      throw gl.getProgramInfoLog(program);
+      throw gl.getProgramInfoLog(program)!;
     }
 
-    var nAttribs = gl.getProgramParameter(program, WebGL.ACTIVE_ATTRIBUTES);
+    final nAttribs =
+        gl.getProgramParameter(program, WebGL.ACTIVE_ATTRIBUTES) as int;
     for (int i = 0; i < nAttribs; i++) {
       var info = gl.getActiveAttrib(program, i);
       var l = gl.getAttribLocation(program, info.name);
@@ -48,7 +49,8 @@ class GLShader {
       attributes[info.name] = l;
     }
 
-    var nUniforms = gl.getProgramParameter(program, WebGL.ACTIVE_UNIFORMS);
+    final nUniforms =
+        gl.getProgramParameter(program, WebGL.ACTIVE_UNIFORMS) as int;
     for (int i = 0; i < nUniforms; i++) {
       var info = gl.getActiveUniform(program, i);
       uniforms[info.name] = gl.getUniformLocation(program, info.name);
@@ -66,13 +68,13 @@ class GLShader {
     return GLShader(ctx, vertSource.join("\n"), fragSource.join("\n"));
   }
 
-  Program program;
-  var attributes = <String, int>{};
-  var uniforms = <String, UniformLocation>{};
+  late final Program program;
+  final attributes = <String, int>{};
+  final uniforms = <String, UniformLocation>{};
 }
 
 class GLObject {
-  GLViewport ctx;
+  late GLViewport ctx;
 
   Future init() async {}
   void tick(num dt) {}
@@ -83,22 +85,22 @@ class GLObject {
 }
 
 class GLViewport {
-  GLApp app;
+  late GLApp app;
 
-  int width;
-  int height;
+  late int width;
+  late int height;
 
-  Matrix4 pMatrix;
+  late Matrix4 pMatrix;
   Vector3 cameraPos = Vector3.zero();
   Vector3 cameraAng = Vector3.zero();
-  Matrix4 mvMatrix;
+  late Matrix4 mvMatrix;
   List<Matrix4> mvStack = [];
 
   mvPush() => mvStack.add(mvMatrix.clone());
   mvPop() => mvMatrix = mvStack.removeLast();
 
-  RenderingContext gl;
-  JsObject glJs;
+  late final RenderingContext gl;
+  late final JsObject glJs;
 
   GLViewport(this.app) {
     gl = app.gl;
@@ -128,7 +130,7 @@ class GLViewport {
   Map<String, JsObject> objCache = {};
 
   FutureOr<JsObject> loadObj(String url) async {
-    if (objCache.containsKey(url)) return objCache[url];
+    if (objCache.containsKey(url)) return objCache[url]!;
     var obj =
         JsObject(context["OBJ"]["Mesh"], [await HttpRequest.getString(url)]);
     (context["OBJ"]["initMeshBuffers"] as JsFunction).apply([glJs, obj]);
@@ -140,7 +142,7 @@ class GLViewport {
 
   Future<GLShader> loadShader(String vert, String frag) async {
     var key = Tuple2(vert, frag);
-    if (shaderCache.containsKey(key)) return shaderCache[key];
+    if (shaderCache.containsKey(key)) return shaderCache[key]!;
 
     var shader = GLShader(
       this,
@@ -162,7 +164,7 @@ class GLViewport {
     int srcType = WebGL.UNSIGNED_BYTE,
   }) async {
     var key = Tuple5(url, level, internalFormat, srcFormat, srcType);
-    if (textureCache.containsKey(key)) return textureCache[key];
+    if (textureCache.containsKey(key)) return textureCache[key]!;
 
     var texture = gl.createTexture();
 
@@ -175,7 +177,7 @@ class GLViewport {
 
     bool po2(int x) => x & (x - 1) == 0;
 
-    if (po2(img.width) && po2(img.height)) {
+    if (po2(img.width!) && po2(img.height!)) {
       gl.generateMipmap(WebGL.TEXTURE_2D);
     } else {
       gl.texParameteri(
@@ -197,7 +199,7 @@ class GLFilter extends GLObject {
 
   GLFilter(this.ctx, this.shader);
 
-  Texture texture;
+  late Texture texture;
 
   void draw() {
     var gl = ctx.gl;
@@ -206,7 +208,13 @@ class GLFilter extends GLObject {
     gl.useProgram(shader.program);
     gl.bindBuffer(WebGL.ARRAY_BUFFER, ctx.app.squareBuf);
     gl.vertexAttribPointer(
-        shader.attributes["aPos"], 2, WebGL.FLOAT, false, 0, 0);
+      shader.attributes["aPos"]!,
+      2,
+      WebGL.FLOAT,
+      false,
+      0,
+      0,
+    );
     gl.uniform1i(shader.uniforms["uTex"], 0);
     gl.drawArrays(WebGL.TRIANGLES, 0, 6);
   }
@@ -219,7 +227,7 @@ class GLApp {
     })
       ..observe(canvas);
 
-    gl = canvas.getContext3d();
+    gl = canvas.getContext3d()!;
     glJs = JsObject.fromBrowserObject(gl.canvas)
         .callMethod("getContext", ["webgl"]);
     viewport = GLViewport(this);
@@ -228,25 +236,26 @@ class GLApp {
     lastDraw = DateTime.now().millisecondsSinceEpoch;
   }
 
-  CanvasElement canvas;
-  GLViewport viewport;
-  RenderingContext gl;
-  JsObject glJs;
-  Framebuffer framebuffer;
-  Texture framebufferTex;
-  Texture framebufferTex2;
-  Texture depthTex;
+  final CanvasElement canvas;
+  late final GLViewport viewport;
+  late final RenderingContext gl;
+  late final JsObject glJs;
 
-  ResizeObserver resizeObserver;
+  late final Framebuffer framebuffer;
+  late final Texture framebufferTex;
+  late final Texture framebufferTex2;
+  late final Texture depthTex;
+
+  late final ResizeObserver resizeObserver;
   double time = 0.0;
   double oversample = 2.0;
 
-  Buffer squareBuf;
+  late final Buffer squareBuf;
 
   Map<String, JsObject> webglExt = {};
 
   Object getWebGLExt(String name) {
-    if (webglExt.containsKey(name)) return webglExt[name];
+    if (webglExt.containsKey(name)) return webglExt[name]!;
     var ext = glJs.callMethod("getExtension", [name]);
     if (ext == null) throw "Could not load extension '$name'";
     print("Loaded WebGL extension '$name'");
@@ -315,20 +324,21 @@ class GLApp {
     }
   }
 
-  void updateFramebufferSize(Texture tex) {
+  void updateFramebufferSize(Texture? tex) {
     if (tex == null) return;
     gl.bindTexture(WebGL.TEXTURE_2D, tex);
 
     gl.texImage2D(
-        WebGL.TEXTURE_2D,
-        0,
-        WebGL.RGBA,
-        viewport.width,
-        viewport.height,
-        0,
-        WebGL.RGBA,
-        webglExt["OES_texture_half_float"]["HALF_FLOAT_OES"],
-        null);
+      WebGL.TEXTURE_2D,
+      0,
+      WebGL.RGBA,
+      viewport.width,
+      viewport.height,
+      0,
+      WebGL.RGBA,
+      webglExt["OES_texture_half_float"]!["HALF_FLOAT_OES"],
+      null,
+    );
 
     gl.texParameteri(
         WebGL.TEXTURE_2D, WebGL.TEXTURE_WRAP_S, WebGL.CLAMP_TO_EDGE);
@@ -341,8 +351,8 @@ class GLApp {
   void updateSize() {
     canvas.width = canvas.clientWidth * 2;
     canvas.height = canvas.clientHeight * 2;
-    viewport.width = (canvas.width * oversample).round();
-    viewport.height = (canvas.height * oversample).round();
+    viewport.width = (canvas.width! * oversample).round();
+    viewport.height = (canvas.height! * oversample).round();
     updateFramebufferSize(framebufferTex);
     updateFramebufferSize(framebufferTex2);
   }
@@ -350,12 +360,10 @@ class GLApp {
   List<GLObject> objects = [];
   List<GLFilter> filters = [];
 
-  int lastDraw;
+  late int lastDraw;
   bool drawing = false;
 
   void draw() {
-    if (canvas == null) return;
-
     if (canvas.width != 0 && canvas.height != 0) {
       viewport.mvMatrix = Matrix4.identity();
       var now = DateTime.now().millisecondsSinceEpoch;
@@ -377,7 +385,7 @@ class GLApp {
       for (final filter in filters) {
         if (filter == filters.last) {
           gl.bindFramebuffer(WebGL.FRAMEBUFFER, null);
-          gl.viewport(0, 0, canvas.width, canvas.height);
+          gl.viewport(0, 0, canvas.width!, canvas.height!);
           gl.clearColor(1, 0.4, 1, 1);
           gl.clear(WebGL.COLOR_BUFFER_BIT | WebGL.DEPTH_BUFFER_BIT);
         } else {
@@ -412,7 +420,6 @@ class GLApp {
   void destroy() {
     // TODO: Do a better job of cleaning up buffers
     drawing = false;
-    canvas = null;
     resizeObserver.disconnect();
     viewport.destroy();
   }
