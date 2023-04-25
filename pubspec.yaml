@@ -15,9 +15,9 @@ dependencies:
   vector_math: any
   xml: any
   font_face_observer: any
-  lints: ^1.0.0
+  lints: any
 #  path: ^1.6.0
 
 dev_dependencies:
-  build_runner: ^2.1.4
-  build_web_compilers: ^3.2.1
+  build_runner: 2.3.3
+  build_web_compilers: 3.2.7
