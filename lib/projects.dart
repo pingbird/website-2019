@@ -60,6 +60,35 @@ void startProjects() {
 
   add(
     r1,
+    name: "Boxy",
+    content:
+        "Boxy is a popular Flutter package to overcome the limitations of built-in layout widgets.",
+    website: "https://boxy.wiki",
+    github: "https://github.com/PixelToast/boxy",
+    bg: "icons/banner/boxy.svg",
+  );
+
+  add(
+    r1,
+    name: "Puro",
+    content:
+        "Puro is a powerful command line tool for managing Flutter versions, it's especially useful for devs that have multiple projects or slow internet.",
+    website: "https://puro.dev",
+    github: "https://github.com/PixelToast/puro",
+    bg: "icons/banner/puro.svg",
+  );
+
+  add(
+    r2,
+    name: "StackVM",
+    content:
+        "A curiously fast runtime for a popular esolang using a handful of novel optimization techniques and an LLVM-based JIT.",
+    github: "https://github.com/PixelToast/stackvm",
+    bg: "icons/banner/toast.svg",
+  );
+
+  add(
+    r2,
     name: "c.tst.sh",
     content:
         "A zachtronics inspired CMOS digital logic simulator. Allows you to create any digital circuit at the silicon level.",
@@ -69,17 +98,16 @@ void startProjects() {
   );
 
   add(
-    r1,
+    r2,
     name: "Tangent",
     content:
         "First of its kind discord bot with an interactive repl for 50+ languages, gives users full control over a secure Linux VM.",
-    blog: "https://github.com/PixelToast/tangent",
     github: "https://github.com/PixelToast/tangent",
     bg: "icons/banner/tan.svg",
   );
 
   add(
-    r2,
+    r3,
     name: "Llama",
     content:
         "An experimental lambda calculus based programming language, includes a comprehensive and innovative standard library.",
@@ -89,39 +117,11 @@ void startProjects() {
   );
 
   add(
-    r2,
-    name: "^v",
-    content:
-        "Framework to create modular asynchronous networked applications in Lua, currently used in an advanced IRC bot.",
-    github: "https://github.com/xpcall/-v",
-    bg: "icons/banner/caretv.svg",
-  );
-
-  add(
-    r2,
+    r3,
     name: "DartLua",
     content:
         "A Dart library and CLI for running, disassembling, and debugging Lua programs. Includes a functioning bytecode VM and disassembler.",
     github: "https://github.com/PixelToast/dartlua",
     bg: "icons/banner/lua.svg",
-  );
-
-  add(
-    r3,
-    name: "Starstruck",
-    content:
-        "My C++ robot code used in the 2016-2017 VEX Competition “Starstruck”. Includes several high level features never before seen on a vex robot.",
-    blog: "https://blog.tst.sh/8762a-overcomplicated-code-release/",
-    gitlab: "https://lab.pxtst.com/PixelToast/8762A-2016/tree/master/src",
-    bg: "icons/banner/star.svg",
-  );
-
-  add(
-    r3,
-    name: "Toast",
-    content:
-        "An experimental programming language that compiles to brainfuck. Includes type inference, automatic variable initialization and more.",
-    gitlab: "https://lab.tst.sh/PixelToast/bfexpr",
-    bg: "icons/banner/toast.svg",
   );
 }
