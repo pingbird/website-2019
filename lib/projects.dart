@@ -64,7 +64,7 @@ void startProjects() {
     content:
         "Boxy is a popular Flutter package to overcome the limitations of built-in layout widgets.",
     website: "https://boxy.wiki",
-    github: "https://github.com/PixelToast/boxy",
+    github: "https://github.com/pingbird/boxy",
     bg: "icons/banner/boxy.svg",
   );
 
@@ -74,7 +74,7 @@ void startProjects() {
     content:
         "Puro is a powerful command line tool for managing Flutter versions, it's especially useful for devs that have multiple projects or slow internet.",
     website: "https://puro.dev",
-    github: "https://github.com/PixelToast/puro",
+    github: "https://github.com/pingbird/puro",
     bg: "icons/banner/puro.svg",
   );
 
@@ -83,7 +83,7 @@ void startProjects() {
     name: "StackVM",
     content:
         "A curiously fast runtime for a popular esolang using a handful of novel optimization techniques and an LLVM-based JIT.",
-    github: "https://github.com/PixelToast/stackvm",
+    github: "https://github.com/pingbird/stackvm",
     bg: "icons/banner/toast.svg",
   );
 
@@ -102,7 +102,7 @@ void startProjects() {
     name: "Tangent",
     content:
         "First of its kind discord bot with an interactive repl for 50+ languages, gives users full control over a secure Linux VM.",
-    github: "https://github.com/PixelToast/tangent",
+    github: "https://github.com/pingbird/tangent",
     bg: "icons/banner/tan.svg",
   );
 
@@ -112,7 +112,7 @@ void startProjects() {
     content:
         "An experimental lambda calculus based programming language, includes a comprehensive and innovative standard library.",
     blog: "https://blog.tst.sh/llama/",
-    github: "https://github.com/PixelToast/llama",
+    github: "https://github.com/pingbird/llama",
     bg: "icons/banner/llama.svg",
   );
 
@@ -121,7 +121,7 @@ void startProjects() {
     name: "DartLua",
     content:
         "A Dart library and CLI for running, disassembling, and debugging Lua programs. Includes a functioning bytecode VM and disassembler.",
-    github: "https://github.com/PixelToast/dartlua",
+    github: "https://github.com/pingbird/dartlua",
     bg: "icons/banner/lua.svg",
   );
 }

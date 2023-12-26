@@ -20,5 +20,5 @@ dart ../inlinemain.dart
 echo "${RED}minifying${NC}"
 html-minifier index.html --collapse-boolean-attributes --collapse-inline-tag-whitespace --collapse-whitespace --minify-css --minify-js --remove-attribute-quotes --remove-comments --remove-redundant-attributes --remove-script-type-attributes --remove-style-link-type-attributes --remove-tag-whitespace --sort-attributes --sort-class-name -o index.html
 echo "${RED}uploading to server${NC}"
-rm -r packages .build.manifest .packages build.zip
+rm -rf packages .build.manifest .packages build.zip
 rsync -r * root@tst.sh:/var/www/html/
